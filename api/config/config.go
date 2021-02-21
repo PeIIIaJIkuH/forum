@@ -14,9 +14,9 @@ const (
 	SessionCookieName = "forumSecretKey"
 	SessionExpiration = 1 * time.Hour
 	ClientURLDev      = "http://localhost:3000"
-	ClientURLProd     = "http://167.99.251.68:3000"
+	ClientURLProd     = "http://139.59.211.109:3000"
 )
 
 var (
-	ClientURL = ClientURLProd
+	ClientURL = ClientURLDev
 )
