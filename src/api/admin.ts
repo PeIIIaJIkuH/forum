@@ -1,35 +1,35 @@
 import {ApiPromise} from '../types'
-import {defaultAxios, updatingAxios} from './index'
+import {defaultAxios} from './index'
 
-const fetchModeratorRequests = (): ApiPromise => updatingAxios.get('admin/requests')
+const fetchModeratorRequests = (): ApiPromise => defaultAxios.get('admin/requests')
 
-const acceptModeratorRequest = (requestId: number): ApiPromise => updatingAxios.put(`admin/request/accept/${requestId}`)
+const acceptModeratorRequest = (requestId: number): ApiPromise => defaultAxios.put(`admin/request/accept/${requestId}`)
 
-const dismissModeratorRequest = (requestId: number): ApiPromise => updatingAxios.delete(
+const dismissModeratorRequest = (requestId: number): ApiPromise => defaultAxios.delete(
 	`admin/request/dismiss/${requestId}`)
 
-const fetchPostReports = (): ApiPromise => updatingAxios.get('admin/post/reports')
+const fetchPostReports = (): ApiPromise => defaultAxios.get('admin/post/reports')
 
-const acceptPostReport = (reportId: number): ApiPromise => updatingAxios.put(`admin/post/report/accept/${reportId}`)
+const acceptPostReport = (reportId: number): ApiPromise => defaultAxios.put(`admin/post/report/accept/${reportId}`)
 
-const dismissPostReport = (reportId: number): ApiPromise => updatingAxios.delete(
+const dismissPostReport = (reportId: number): ApiPromise => defaultAxios.delete(
 	`admin/post/report/dismiss/${reportId}`)
 
-const deletePost = (postId: number): ApiPromise => updatingAxios.delete(`admin/post/delete/${postId}`)
+const deletePost = (postId: number): ApiPromise => defaultAxios.delete(`admin/post/delete/${postId}`)
 
-const deleteComment = (commentId: number): ApiPromise => updatingAxios.delete(`admin/comment/delete/${commentId}`)
+const deleteComment = (commentId: number): ApiPromise => defaultAxios.delete(`admin/comment/delete/${commentId}`)
 
-const fetchModerators = (): ApiPromise => updatingAxios.get('admin/moderators')
+const fetchModerators = (): ApiPromise => defaultAxios.get('admin/moderators')
 
-const demoteModerator = (moderatorId: number): ApiPromise => updatingAxios.put(`admin/demote/moderator/${moderatorId}`)
+const demoteModerator = (moderatorId: number): ApiPromise => defaultAxios.put(`admin/demote/moderator/${moderatorId}`)
 
 const fetchCategories = (): ApiPromise => defaultAxios.get('admin/categories')
 
-const createCategory = (categoryName: string): ApiPromise => updatingAxios.post('admin/category/add', {
+const createCategory = (categoryName: string): ApiPromise => defaultAxios.post('admin/category/add', {
 	name: categoryName,
 })
 
-const deleteCategory = (categoryId: number): ApiPromise => updatingAxios.delete(`admin/category/delete/${categoryId}`)
+const deleteCategory = (categoryId: number): ApiPromise => defaultAxios.delete(`admin/category/delete/${categoryId}`)
 
 export const adminAPI = {
 	fetchModeratorRequests,

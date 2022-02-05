@@ -1,29 +1,29 @@
 import {ApiPromise} from '../types'
-import {updatingAxios} from './index'
+import {defaultAxios} from './index'
 
-const fetchUser = (userId: number): ApiPromise => updatingAxios.get(`user/${userId}`)
+const fetchUser = (userId: number): ApiPromise => defaultAxios.get(`user/${userId}`)
 
-const fetchDefaultNotifications = (): ApiPromise => updatingAxios.get('notifications')
+const fetchDefaultNotifications = (): ApiPromise => defaultAxios.get('notifications')
 
-const deleteDefaultNotifications = (): ApiPromise => updatingAxios.delete('notifications/delete')
+const deleteDefaultNotifications = (): ApiPromise => defaultAxios.delete('notifications/delete')
 
-const requestPromotionToModerator = (): ApiPromise => updatingAxios.post('request/add')
+const requestPromotionToModerator = (): ApiPromise => defaultAxios.post('request/add')
 
-const deleteRequestPromotionToModerator = (): ApiPromise => updatingAxios.delete('request/delete')
+const deleteRequestPromotionToModerator = (): ApiPromise => defaultAxios.delete('request/delete')
 
-const getRequestPromotionToModerator = (): ApiPromise => updatingAxios.get('request')
+const getRequestPromotionToModerator = (): ApiPromise => defaultAxios.get('request')
 
-const fetchRoleNotifications = (): ApiPromise => updatingAxios.get('user/notifications/role')
+const fetchRoleNotifications = (): ApiPromise => defaultAxios.get('user/notifications/role')
 
-const deleteRoleNotifications = (): ApiPromise => updatingAxios.delete('user/notifications/role/delete')
+const deleteRoleNotifications = (): ApiPromise => defaultAxios.delete('user/notifications/role/delete')
 
-const fetchReportNotifications = (): ApiPromise => updatingAxios.get('user/notifications/report')
+const fetchReportNotifications = (): ApiPromise => defaultAxios.get('user/notifications/report')
 
-const deleteReportNotifications = (): ApiPromise => updatingAxios.delete('user/notifications/report/delete')
+const deleteReportNotifications = (): ApiPromise => defaultAxios.delete('user/notifications/report/delete')
 
-const fetchPostNotifications = (): ApiPromise => updatingAxios.get('user/notifications/post')
+const fetchPostNotifications = (): ApiPromise => defaultAxios.get('user/notifications/post')
 
-const deletePostNotifications = (): ApiPromise => updatingAxios.delete('user/notifications/post/delete')
+const deletePostNotifications = (): ApiPromise => defaultAxios.delete('user/notifications/post/delete')
 
 export const userAPI = {
 	fetchUser,

@@ -48,7 +48,7 @@ export const Header: FC = observer(() => {
 				<div className={s.inner}>
 					<Link to='/' className={s.logo}>
 						<Image width={50} src={logo} preview={false} alt='logo'/>
-						foru<span>me</span>
+						forume
 					</Link>
 					{authState.user ?
 						!isTabletOrMobile ?
