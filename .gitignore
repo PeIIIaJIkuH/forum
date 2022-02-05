@@ -4,3 +4,6 @@ dist
 dist-ssr
 *.local
 /ssl
+yarn.lock
+yarn-error.lock
+/.idea
