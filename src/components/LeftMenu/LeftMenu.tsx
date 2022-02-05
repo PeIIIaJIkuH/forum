@@ -36,9 +36,13 @@ export const LeftMenu: FC<Props> = observer(({mobile}) => {
 			/>
 			{mobile && (
 				<>
-					<MenuItem key='by-categories' title='By Categories' icon={<TagsOutlined/>} available forAll={mobile}/>
+					<MenuItem key='by-categories' title='By Categories' icon={
+						<TagsOutlined/>} available forAll={mobile}
+					/>
 					<CategoriesModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
-					<MenuItem key='create' title='Create Post' icon={<FormOutlined/>} forAll={mobile} available={mobile}/>
+					<MenuItem key='create' title='Create Post' icon={
+						<FormOutlined/>} forAll={mobile} available={mobile}
+					/>
 				</>
 			)}
 		</Menu>

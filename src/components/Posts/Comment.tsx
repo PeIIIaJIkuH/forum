@@ -12,6 +12,7 @@ import commentsState from '../../store/commentsState'
 import authState from '../../store/authState'
 import useOnClickOutside from '../../utils/useOnClickOutside'
 import cx from 'classnames'
+import appState from '../../store/appState'
 
 type Props = {
 	author: ReactNode
@@ -33,18 +34,16 @@ export const Comment: FC<Props> = observer(({
 	const [visible, setVisible] = useState(false)
 	const ref = useRef<HTMLDivElement>(null)
 	const paragraphs = content.split('\n').map((paragraph: string, i: number) => (<p key={i}>{paragraph}</p>))
-	const [deleteLoading, setDeleteLoading] = useState(false)
-	const [editLoading, setEditLoading] = useState(false)
 
 	const onDelete = async () => {
 		let status: boolean
-		setDeleteLoading(true)
+		appState.setIsLoading(true)
 		if (!userPage) {
 			status = await commentsState.deleteComment(comment.id, {isAdmin})
 		} else {
 			status = await commentsState.deleteComment(comment.id, {isAdmin, postId: comment.postId})
 		}
-		setDeleteLoading(false)
+		appState.setIsLoading(false)
 		setVisible(false)
 		if (status) {
 			message.success('comment was deleted successfully')
@@ -58,9 +57,9 @@ export const Comment: FC<Props> = observer(({
 		if (!isEdit) {
 			setIsEdit(true)
 		} else {
-			setEditLoading(true)
+			appState.setIsLoading(true)
 			status = await commentsState.editComment(comment, text)
-			setEditLoading(false)
+			appState.setIsLoading(false)
 			setIsEdit(false)
 		}
 		if (!status) {
@@ -75,10 +74,10 @@ export const Comment: FC<Props> = observer(({
 	const editIcon = <EditOutlined className={s.icon}/>
 	const saveIcon = <SaveOutlined className={s.icon}/>
 	const editBtn =
-		<Button type='text' icon={!isEdit ? editIcon : saveIcon} onClick={onEdit} loading={editLoading}/>
+		<Button type='text' icon={!isEdit ? editIcon : saveIcon} onClick={onEdit} loading={appState.isLoading}/>
 	const deleteBtn = (
 		<Button danger type='text' icon={<DeleteOutlined className={s.icon}/>} onClick={onDelete}
-		        loading={deleteLoading}
+		        loading={appState.isLoading}
 		/>
 	)
 	const cContent = !isEdit ? paragraphs : (
@@ -91,32 +90,30 @@ export const Comment: FC<Props> = observer(({
 		setVisible(visible)
 	}
 
-	const isRatedUp = comment.userRating === 1,
-		isRatedDown = comment.userRating === -1,
-		[upLoading, setUpLoading] = useState(false),
-		[downLoading, setDownLoading] = useState(false),
-		upRef = useRef<HTMLDivElement>(null),
-		downRef = useRef<HTMLDivElement>(null)
+	const isRatedUp = comment.userRating === 1
+	const isRatedDown = comment.userRating === -1
+	const upRef = useRef<HTMLDivElement>(null)
+	const downRef = useRef<HTMLDivElement>(null)
 
 	const onUpClick = async () => {
-		setUpLoading(true)
+		appState.setIsLoading(true)
 		const status = await commentsState.setCommentRating(comment, 1)
+		appState.setIsLoading(false)
 		if (upRef.current) {
 			upRef.current.blur()
 		}
-		setUpLoading(false)
 		if (!status) {
 			message.error('can not rate comment')
 		}
 	}
 
 	const onDownClick = async () => {
-		setDownLoading(true)
+		appState.setIsLoading(true)
 		const status = await commentsState.setCommentRating(comment, -1)
+		appState.setIsLoading(false)
 		if (downRef.current) {
 			downRef.current.blur()
 		}
-		setDownLoading(false)
 		if (!status) {
 			message.error('can not rate comment')
 		}
@@ -124,12 +121,12 @@ export const Comment: FC<Props> = observer(({
 
 	const upBtn = (
 		<Button className={cx(s.commentUp, isRatedUp && s.commentRatedUp)} icon={<UpOutlined/>} ref={upRef}
-		        disabled={!authState.user?.id} onClick={onUpClick} loading={upLoading} type='text' size='small'
+		        disabled={!authState.user?.id} onClick={onUpClick} loading={appState.isLoading} type='text' size='small'
 		/>
 	)
 	const downBtn = (
 		<Button className={cx(s.downComment, isRatedDown && s.commentRatedDown)} icon={<DownOutlined/>}
-		        disabled={!authState.user?.id} onClick={onDownClick} loading={downLoading} type='text' size='small'
+		        disabled={!authState.user?.id} onClick={onDownClick} loading={appState.isLoading} type='text' size='small'
 		        ref={downRef}
 		/>
 	)

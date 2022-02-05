@@ -1,4 +1,4 @@
-import React, {FC, useRef, useState} from 'react'
+import React, {FC, useRef} from 'react'
 import s from '../Posts.module.css'
 import Button from 'antd/lib/button'
 import {DownOutlined, UpOutlined} from '@ant-design/icons'
@@ -8,6 +8,7 @@ import {observer} from 'mobx-react-lite'
 import postsState from '../../../store/postsState'
 import authState from '../../../store/authState'
 import cx from 'classnames'
+import appState from '../../../store/appState'
 
 type Props = {
 	post: IPost
@@ -16,30 +17,28 @@ type Props = {
 export const Rate: FC<Props> = observer(({post}) => {
 	const isRatedUp = post.userRating === 1
 	const isRatedDown = post.userRating === -1
-	const [upIsFetching, setUpIsFetching] = useState(false)
-	const [downIsFetching, setDownIsFetching] = useState(false)
 	const upRef = useRef<HTMLDivElement>(null)
 	const downRef = useRef<HTMLDivElement>(null)
 
 	const onUpClick = () => {
-		setUpIsFetching(true)
+		appState.setIsLoading(true)
 		const status = postsState.setRating(post, 1)
 		if (upRef.current) {
 			upRef.current.blur()
 		}
-		setUpIsFetching(false)
+		appState.setIsLoading(false)
 		if (!status) {
 			message.error('can not rate post').then()
 		}
 	}
 
 	const onDownClick = () => {
-		setDownIsFetching(true)
+		appState.setIsLoading(true)
 		const status = postsState.setRating(post, -1)
 		if (downRef.current) {
 			downRef.current.blur()
 		}
-		setDownIsFetching(false)
+		appState.setIsLoading(false)
 		if (!status) {
 			message.error('can not rate post').then()
 		}
@@ -48,13 +47,13 @@ export const Rate: FC<Props> = observer(({post}) => {
 	return (
 		<div className={s.rating}>
 			<Button className={cx(s.up, isRatedUp && s.ratedUp)} icon={<UpOutlined/>} ref={upRef}
-			        disabled={!authState.user?.id} onClick={onUpClick} loading={upIsFetching}
+			        disabled={!authState.user?.id} onClick={onUpClick} loading={appState.isLoading}
 			/>
 			<div className={s.ratingNumber}>
 				{post.postRating}
 			</div>
 			<Button className={cx(s.down, isRatedDown && s.ratedDown)} icon={<DownOutlined/>} ref={downRef}
-			        disabled={!authState.user?.id} onClick={onDownClick} loading={downIsFetching}
+			        disabled={!authState.user?.id} onClick={onDownClick} loading={appState.isLoading}
 			/>
 		</div>
 	)

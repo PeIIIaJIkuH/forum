@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import React, {FC} from 'react'
 import s from './Posts.module.css'
 import Button from 'antd/lib/button'
 import Form from 'antd/lib/form'
@@ -6,6 +6,7 @@ import TextArea from 'antd/lib/input/TextArea'
 import {defaultValidator} from '../../utils/helpers'
 import {useForm} from 'antd/lib/form/Form'
 import authState from '../../store/authState'
+import appState from '../../store/appState'
 
 type Props = {
 	onSubmit: (obj: { content: string }) => Promise<void>
@@ -13,13 +14,12 @@ type Props = {
 
 export const CommentForm: FC<Props> = ({onSubmit}) => {
 	const [form] = useForm()
-	const [isFetching, setIsFetching] = useState(false)
 
 	const onFinish = async (data: any) => {
-		setIsFetching(true)
+		appState.setIsLoading(true)
 		await onSubmit(data)
 		form.resetFields()
-		setIsFetching(false)
+		appState.setIsLoading(false)
 	}
 
 	return (
@@ -29,7 +29,7 @@ export const CommentForm: FC<Props> = ({onSubmit}) => {
 			</Form.Item>
 			<Form.Item>
 				<Button className={s.addComment} type='primary' htmlType='submit' disabled={!authState.user}
-				        loading={isFetching}
+				        loading={appState.isLoading}
 				>
 					Add Comment
 				</Button>

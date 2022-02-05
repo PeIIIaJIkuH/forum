@@ -46,10 +46,13 @@ export const UserInfo: FC = observer(() => {
 	useEffect(() => {
 		const f = async () => {
 			try {
+				appState.setIsLoading(true)
 				const {data} = await userAPI.getRequestPromotionToModerator()
 				authState.setModeratorRequest(data.pending ? 1 : 0)
 			} catch (e) {
 				authState.setModeratorRequest(-1)
+			} finally {
+				appState.setIsLoading(false)
 			}
 		}
 		if (isUser) {
@@ -66,10 +69,11 @@ export const UserInfo: FC = observer(() => {
 					<Descriptions.Item label='Last active'>{lastActive}</Descriptions.Item>
 				</Descriptions>
 				{isUser && request === -1 && (
-					<Button onClick={onRequest}>Request promotion to moderator</Button>
+					<Button onClick={onRequest} loading={appState.isLoading}>Request promotion to moderator</Button>
 				)}
 				{isUser && request !== -1 && (
-					<Button onClick={onDeleteRequest} danger>Delete your request to moderator</Button>
+					<Button onClick={onDeleteRequest} danger loading={appState.isLoading}>Delete your request to
+						moderator</Button>
 				)}
 			</Card>
 		</section>

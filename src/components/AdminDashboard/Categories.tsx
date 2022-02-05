@@ -33,7 +33,7 @@ export const Categories: FC = observer(() => {
 					<Link to={`/by-categories?${categoriesQuery(name)}`}>{name}</Link>
 					<div>
 						<Button icon={<DeleteOutlined/>} danger className={s.close} type='link'
-						        onClick={onDelete.bind(null, id)}
+						        onClick={onDelete.bind(null, id)} loading={appState.isLoading}
 						/>
 					</div>
 				</div>

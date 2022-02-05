@@ -18,6 +18,7 @@ import authState from '../../../store/authState'
 import {adminAPI} from '../../../api/admin'
 import {moderatorAPI} from '../../../api/moderator'
 import moderatorState from '../../../store/moderatorState'
+import appState from '../../../store/appState'
 
 type Props = {
 	post: IPost
@@ -29,8 +30,6 @@ export const Header: FC<Props> = observer(({post}) => {
 	const isAuthor = authState.user?.id === post.author.id
 	const isModerator = authState.role === EUserRole.moderator
 	const isAdmin = authState.role === EUserRole.admin
-	const [deleteLoading, setDeleteLoading] = useState(false)
-	const [reportLoading, setReportLoading] = useState(false)
 
 	const onEdit = async () => {
 		setVisible(false)
@@ -40,7 +39,7 @@ export const Header: FC<Props> = observer(({post}) => {
 	const onDelete = async (type: 'author' | 'moderator' | 'admin') => {
 		setVisible(false)
 		let status: boolean
-		setDeleteLoading(true)
+		appState.setIsLoading(true)
 		if (type === 'author') {
 			status = await postsState.deletePost(post.id)
 		} else if (type === 'moderator') {
@@ -48,7 +47,7 @@ export const Header: FC<Props> = observer(({post}) => {
 		} else {
 			status = (await adminAPI.deletePost(post.id)).status
 		}
-		setDeleteLoading(false)
+		appState.setIsLoading(false)
 		if (status) {
 			message.success('post was deleted successfully')
 			await postsState.fetchAllPosts()
@@ -59,9 +58,9 @@ export const Header: FC<Props> = observer(({post}) => {
 
 	const onCreateReport = async () => {
 		setVisible(false)
-		setReportLoading(true)
+		appState.setIsLoading(true)
 		const {status} = await moderatorAPI.createReport(authState.user?.id!, post.id)
-		setReportLoading(false)
+		appState.setIsLoading(false)
 		if (status) {
 			message.success('post was reported successfully')
 			await moderatorState.fetchModeratorReports()
@@ -76,9 +75,9 @@ export const Header: FC<Props> = observer(({post}) => {
 		if (!reportId) {
 			return
 		}
-		setReportLoading(true)
+		appState.setIsLoading(true)
 		const {status} = await moderatorAPI.deleteReport(reportId)
-		setReportLoading(false)
+		appState.setIsLoading(false)
 		if (status) {
 			message.success('post report was deleted successfully')
 			await moderatorState.fetchModeratorReports()
@@ -96,27 +95,27 @@ export const Header: FC<Props> = observer(({post}) => {
 			{isAuthor ? (
 				<>
 					<Button type='text' icon={<EditOutlined/>} onClick={onEdit}/>
-					<Button danger type='link' icon={<DeleteOutlined/>} loading={deleteLoading}
+					<Button danger type='link' icon={<DeleteOutlined/>} loading={appState.isLoading}
 					        onClick={onDelete.bind(null, 'author')}
 					/>
 				</>
 			) : isModerator ? (
 				<>
-					<Button danger type='link' icon={<DeleteOutlined/>} loading={deleteLoading}
+					<Button danger type='link' icon={<DeleteOutlined/>} loading={appState.isLoading}
 					        onClick={onDelete.bind(null, 'moderator')}
 					/>
 					{moderatorState.reportIds.has(post.id) ? (
-						<Button type='link' icon={<IssuesCloseOutlined/>} loading={reportLoading}
+						<Button type='link' icon={<IssuesCloseOutlined/>} loading={appState.isLoading}
 						        onClick={onDeleteReport}
 						/>
 					) : (
-						<Button danger type='link' icon={<ExclamationCircleOutlined/>} loading={reportLoading}
+						<Button danger type='link' icon={<ExclamationCircleOutlined/>} loading={appState.isLoading}
 						        onClick={onCreateReport}
 						/>
 					)}
 				</>
 			) : isAdmin ? (
-				<Button danger type='link' icon={<DeleteOutlined/>} loading={deleteLoading}
+				<Button danger type='link' icon={<DeleteOutlined/>} loading={appState.isLoading}
 				        onClick={onDelete.bind(null, 'admin')}
 				/>
 			) : null}
