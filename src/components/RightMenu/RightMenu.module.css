@@ -1,0 +1,26 @@
+.wrapper {
+    position: fixed;
+    top: 64px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.open {
+    opacity: 1;
+    z-index: 5;
+    transition: opacity 0.3s;
+}
+
+.footer {
+    padding: 20px;
+    margin-bottom: 64px;
+}

@@ -1,0 +1,45 @@
+.layout {
+    background: white;
+}
+
+.innerLayout {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    background: white;
+}
+
+.content {
+    margin: 40px;
+    height: fit-content;
+}
+
+@media (max-width: 1200px) {
+    .content {
+        margin: 20px 20px 0;
+    }
+}
+
+@media (min-width: 1201px) {
+    .content {
+        margin: 40px 40px 0;
+    }
+}
+
+.affix {
+    min-width: 50px;
+}
+
+.menu {
+    margin-left: 15px;
+    height: fit-content;
+}
+
+.actions {
+    margin-right: 15px;
+    height: fit-content;
+}
+
+.sider {
+    margin-top: -1px;
+}
