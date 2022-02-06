@@ -7,8 +7,8 @@ export default defineConfig({
 	plugins: [react()],
 	server: {
 		https: {
-			cert: fse.readFileSync('./ssl/localhost.pem'),
-			key: fse.readFileSync('./ssl/localhost-key.pem'),
+			cert: fse.readFileSync('./ssl/localhost/localhost.crt'),
+			key: fse.readFileSync('./ssl/localhost/localhost.decrypted.key'),
 		},
 	},
 })
