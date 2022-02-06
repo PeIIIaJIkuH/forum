@@ -9,8 +9,9 @@ import message from 'antd/lib/message'
 import Empty from 'antd/lib/empty'
 import Card from 'antd/lib/card'
 import appState from '../../store/appState'
+import {observer} from 'mobx-react-lite'
 
-export const Reports: FC = () => {
+export const Reports: FC = observer(() => {
 	const onAccept = async (id: number) => {
 		appState.setIsLoading(true)
 		const {status} = await adminAPI.acceptPostReport(id)
@@ -60,4 +61,4 @@ export const Reports: FC = () => {
 			<Empty className={s.empty} description='No Reports'/>
 		</Card>
 	)
-}
+})
