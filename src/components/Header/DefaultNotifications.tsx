@@ -6,10 +6,28 @@ import Card from 'antd/lib/card'
 import {observer} from 'mobx-react-lite'
 import {Link} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
+import appState from '../../store/appState'
+import {userAPI} from '../../api/user'
+import message from 'antd/lib/message'
+import Button from 'antd/lib/button'
 
 export const DefaultNotifications: FC = observer(() => {
+	const onDelete = async () => {
+		appState.setIsLoading(true)
+		const {status} = await userAPI.deleteDefaultNotifications()
+		appState.setIsLoading(false)
+		if (status) {
+			message.success('default notifications were deleted successfully')
+		} else {
+			message.error('can not delete default notifications')
+		}
+	}
+
 	return userState.defaultNotifications.length ? (
 		<>
+			<Button danger onClick={onDelete} loading={appState.isLoading} type='link' className={s.deleteButton}>
+				Delete
+			</Button>
 			{userState.defaultNotifications.map(({
 				                                     id, postRating, postId,
 				                                     commentRating, comment, createdAt,

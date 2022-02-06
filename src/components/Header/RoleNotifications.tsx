@@ -5,10 +5,28 @@ import s from '../AdminDashboard/AdminDashboard.module.css'
 import Card from 'antd/lib/card'
 import {observer} from 'mobx-react-lite'
 import {formatDistanceToNow} from 'date-fns'
+import appState from '../../store/appState'
+import {userAPI} from '../../api/user'
+import message from 'antd/lib/message'
+import Button from 'antd/lib/button'
 
 export const RoleNotifications: FC = observer(() => {
+	const onDelete = async () => {
+		appState.setIsLoading(true)
+		const {status} = await userAPI.deleteRoleNotifications()
+		appState.setIsLoading(false)
+		if (status) {
+			message.success('role notifications were deleted successfully')
+		} else {
+			message.error('can not role post notifications')
+		}
+	}
+
 	return userState.roleNotifications.length ? (
 		<>
+			<Button danger onClick={onDelete} loading={appState.isLoading} type='link' className={s.deleteButton}>
+				Delete
+			</Button>
 			{userState.roleNotifications.map(({id, accepted, declined, demoted, createdAt}) => {
 				let text
 				if (accepted) {

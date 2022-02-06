@@ -5,10 +5,28 @@ import s from '../AdminDashboard/AdminDashboard.module.css'
 import Card from 'antd/lib/card'
 import {observer} from 'mobx-react-lite'
 import {formatDistanceToNow} from 'date-fns'
+import Button from 'antd/lib/button'
+import appState from '../../store/appState'
+import {userAPI} from '../../api/user'
+import message from 'antd/lib/message'
 
 export const PostNotifications: FC = observer(() => {
+	const onDelete = async () => {
+		appState.setIsLoading(true)
+		const {status} = await userAPI.deletePostNotifications()
+		appState.setIsLoading(false)
+		if (status) {
+			message.success('post notifications were deleted successfully')
+		} else {
+			message.error('can not delete post notifications')
+		}
+	}
+
 	return userState.postNotifications.length ? (
 		<>
+			<Button danger onClick={onDelete} loading={appState.isLoading} type='link' className={s.deleteButton}>
+				Delete
+			</Button>
 			{userState.postNotifications.map(({id, deleted, createdAt}) => {
 				let text
 				if (deleted) {

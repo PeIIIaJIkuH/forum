@@ -25,3 +25,7 @@
 .empty {
     margin: auto;
 }
+
+.deleteButton {
+    padding: 0;
+}
