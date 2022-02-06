@@ -16,6 +16,7 @@ export const ReportNotifications: FC = observer(() => {
 		const {status} = await userAPI.deleteReportNotifications()
 		appState.setIsLoading(false)
 		if (status) {
+			userState.setReportNotifications([])
 			message.success('report notifications were deleted successfully')
 		} else {
 			message.error('can not delete report notifications')

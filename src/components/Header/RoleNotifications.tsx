@@ -16,6 +16,7 @@ export const RoleNotifications: FC = observer(() => {
 		const {status} = await userAPI.deleteRoleNotifications()
 		appState.setIsLoading(false)
 		if (status) {
+			userState.setRoleNotifications([])
 			message.success('role notifications were deleted successfully')
 		} else {
 			message.error('can not role post notifications')

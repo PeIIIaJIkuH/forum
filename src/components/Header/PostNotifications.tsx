@@ -16,6 +16,7 @@ export const PostNotifications: FC = observer(() => {
 		const {status} = await userAPI.deletePostNotifications()
 		appState.setIsLoading(false)
 		if (status) {
+			userState.setPostNotifications([])
 			message.success('post notifications were deleted successfully')
 		} else {
 			message.error('can not delete post notifications')

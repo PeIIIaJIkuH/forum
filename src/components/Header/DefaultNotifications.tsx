@@ -17,6 +17,7 @@ export const DefaultNotifications: FC = observer(() => {
 		const {status} = await userAPI.deleteDefaultNotifications()
 		appState.setIsLoading(false)
 		if (status) {
+			userState.setDefaultNotifications([])
 			message.success('default notifications were deleted successfully')
 		} else {
 			message.error('can not delete default notifications')
