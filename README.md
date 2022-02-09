@@ -20,7 +20,7 @@
 
 ```sh
 npm i
-npm start
+npm run dev
 ```
 
 ## Screenshots
