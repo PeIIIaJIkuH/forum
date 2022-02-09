@@ -19,7 +19,6 @@
 - Open a terminal instance in the same folder:
 
 ```sh
-cd frontend
 npm i
 npm start
 ```
