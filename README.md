@@ -16,7 +16,7 @@
 
 - Forum requires [Node.js](https://nodejs.org/) to run.
 - Make sure that you have the latest LTS version of node.
-- Open a terminal instance in the same folder:
+- Open a terminal instance in the root folder:
 
 ```sh
 npm i
