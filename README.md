@@ -16,12 +16,11 @@
 
 -   Forum requires [Node.js](https://nodejs.org/) to run.
 -   Make sure that you have the latest LTS version of node.
--   Open another terminal instance in the same folder:
+-   Open a terminal instance in the root folder:
 
 ```sh
-cd frontend
 npm i
-npm start
+npm run dev
 ```
 
 ## Screenshots
