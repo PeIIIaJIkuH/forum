@@ -1,18 +1,19 @@
-import React, {FC, useEffect, useState} from 'react'
+import {CloudUploadOutlined, SaveOutlined, StopOutlined} from '@ant-design/icons'
+import {FC, useEffect, useState} from 'react'
+import {useHistory, useLocation} from 'react-router-dom'
+
 import Button from 'antd/lib/button'
 import Form from 'antd/lib/form'
+import {ImageUpload} from './ImageUpload'
 import Input from 'antd/lib/input'
 import Select from 'antd/lib/select'
-import s from './CreatePost.module.css'
-import {CloudUploadOutlined, SaveOutlined, StopOutlined} from '@ant-design/icons'
-import {useHistory, useLocation} from 'react-router-dom'
 import TextArea from 'antd/lib/input/TextArea'
 import {defaultValidator} from '../../utils/helpers'
-import {ImageUpload} from './ImageUpload'
 import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
-import postsState from '../../store/postsState'
 import {postsAPI} from '../../api/posts'
+import postsState from '../../store/postsState'
+import s from './CreatePost.module.css'
 
 const layout = {
 	labelCol: {span: 4},
@@ -41,9 +42,10 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 		}
 	}, [location.pathname])
 
-	type obj = { title: string, content: string, categories: string[] }
+	type obj = {title: string; content: string; categories: string[]}
 	const onSubmit = async ({title, content, categories}: obj) => {
-		let imagePath = postsState.editing?.imagePath, isImage = postsState.editing?.isImage
+		let imagePath = postsState.editing?.imagePath,
+			isImage = postsState.editing?.isImage
 		if (postsState.editing && imageState && isImage) {
 			await postsAPI.deleteImage(postsState.editing.id)
 			imagePath = ''
@@ -60,8 +62,12 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 		}
 		setIsFetching(true)
 		title = title.trim()
-		content = content?.replace(/\n+/, '\n').split('\n').map(line => line.trim()).join('\n')
-		categories = categories.map(tag => tag.trim())
+		content = content
+			?.replace(/\n+/, '\n')
+			.split('\n')
+			.map((line) => line.trim())
+			.join('\n')
+		categories = categories.map((tag) => tag.trim())
 		if (!postsState.editing) {
 			const {status} = await postsAPI.createPost(title, content, categories, isImage || false, imagePath || '')
 			if (status) {
@@ -71,8 +77,15 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 				message.error(`can not ${!postsState.editing ? 'create' : 'edit'} post`)
 			}
 		} else {
-			await postsAPI.editPost(postsState.editing.id, postsState.editing.author.id, title, content, categories,
-				isImage, imagePath)
+			await postsAPI.editPost(
+				postsState.editing.id,
+				postsState.editing.author.id,
+				title,
+				content,
+				categories,
+				isImage,
+				imagePath,
+			)
 			await setIsFetching(false)
 			history.push('/')
 		}
@@ -82,35 +95,48 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 		history.goBack()
 	}
 
-	const defaultFileList = [{
-		uid: '1',
-		name: postsState.editing?.imagePath.split('images/')[1],
-		status: 'done',
-		url: `https://${postsState.editing?.imagePath}`,
-	}]
+	const defaultFileList = [
+		{
+			uid: '1',
+			name: postsState.editing?.imagePath.split('images/')[1],
+			status: 'done',
+			url: `https://${postsState.editing?.imagePath}`,
+		},
+	]
 
 	return (
 		<Form className={s.form} {...layout} name='createPost' onFinish={onSubmit}>
-			<Form.Item label='Title' name='title' rules={[defaultValidator(
-				'Title')]} initialValue={postsState.editing?.title}
+			<Form.Item
+				label='Title'
+				name='title'
+				rules={[defaultValidator('Title')]}
+				initialValue={postsState.editing?.title}
 			>
-				<Input autoFocus/>
+				<Input autoFocus />
 			</Form.Item>
-			<Form.Item label='Content' name='content' initialValue={postsState.editing?.content}
-			           rules={!formData ? [defaultValidator('Content')] : undefined}
+			<Form.Item
+				label='Content'
+				name='content'
+				initialValue={postsState.editing?.content}
+				rules={!formData ? [defaultValidator('Content')] : undefined}
 			>
-				<TextArea allowClear autoSize={{minRows: 3, maxRows: 10}} showCount/>
+				<TextArea allowClear autoSize={{minRows: 3, maxRows: 10}} showCount />
 			</Form.Item>
 			<Form.Item label='Image' name='image'>
-				<ImageUpload defaultFileList={postsState.editing?.isImage && defaultFileList} setFormData={setFormData}
-				             setImageState={setImageState}
+				<ImageUpload
+					defaultFileList={postsState.editing?.isImage && defaultFileList}
+					setFormData={setFormData}
+					setImageState={setImageState}
 				/>
 			</Form.Item>
-			<Form.Item label='Categories' name='categories' rules={[defaultValidator('Categories')]}
-			           initialValue={postsState.editing?.categories.map(category => category.name)}
+			<Form.Item
+				label='Categories'
+				name='categories'
+				rules={[defaultValidator('Categories')]}
+				initialValue={postsState.editing?.categories.map((category) => category.name)}
 			>
 				<Select mode='tags' allowClear>
-					{postsState.allCategories?.map(category => (
+					{postsState.allCategories?.map((category) => (
 						<Select.Option key={category.name} value={category.name}>
 							{category.name}
 						</Select.Option>
@@ -118,11 +144,15 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 				</Select>
 			</Form.Item>
 			<Form.Item className={s.buttons} {...tailLayout}>
-				<Button type='primary' danger onClick={onCancel} icon={<StopOutlined/>}>
+				<Button type='primary' danger onClick={onCancel} icon={<StopOutlined />}>
 					Cancel
 				</Button>
-				<Button className={s.create} type='primary' htmlType='submit'
-				        icon={postsState.editing ? <SaveOutlined/> : <CloudUploadOutlined/>} loading={isFetching}
+				<Button
+					className={s.create}
+					type='primary'
+					htmlType='submit'
+					icon={postsState.editing ? <SaveOutlined /> : <CloudUploadOutlined />}
+					loading={isFetching}
 				>
 					{postsState.editing ? 'Save' : 'Create'}
 				</Button>

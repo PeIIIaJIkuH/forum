@@ -1,12 +1,12 @@
-import React, {FC} from 'react'
-import s from './Posts.module.css'
 import Button from 'antd/lib/button'
+import {FC} from 'react'
 import Form from 'antd/lib/form'
 import TextArea from 'antd/lib/input/TextArea'
-import {defaultValidator} from '../../utils/helpers'
-import {useForm} from 'antd/lib/form/Form'
-import authState from '../../store/authState'
 import appState from '../../store/appState'
+import authState from '../../store/authState'
+import {defaultValidator} from '../../utils/helpers'
+import s from './Posts.module.css'
+import {useForm} from 'antd/lib/form/Form'
 
 type Props = {
 	onSubmit: (obj: { content: string }) => Promise<void>

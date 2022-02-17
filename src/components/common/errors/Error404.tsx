@@ -1,8 +1,8 @@
-import {Helmet} from 'react-helmet'
-import Result from 'antd/lib/result'
-import {Link} from 'react-router-dom'
 import Button from 'antd/lib/button'
 import {FC} from 'react'
+import {Helmet} from 'react-helmet'
+import {Link} from 'react-router-dom'
+import Result from 'antd/lib/result'
 
 type Props = {
 	text?: string
@@ -18,9 +18,10 @@ export const Error404: FC<Props> = ({text}) => {
 
 	return (
 		<>
-			<Helmet><title>Error 404 | forume</title></Helmet>
-			<Result status='404' title='404' subTitle={subTitle} extra={extra}
-			/>
+			<Helmet>
+				<title>Error 404 | forume</title>
+			</Helmet>
+			<Result status='404' title='404' subTitle={subTitle} extra={extra} />
 		</>
 	)
 }

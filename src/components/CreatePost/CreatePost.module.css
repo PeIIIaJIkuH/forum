@@ -1,23 +1,23 @@
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .card {
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+	width: 100%;
+	max-width: 600px;
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
 .form span[role='button'] {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .buttons {
-    text-align: center;
+	text-align: center;
 }
 
 .create {
-    margin-left: 20px;
+	margin-left: 20px;
 }

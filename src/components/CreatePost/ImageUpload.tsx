@@ -1,6 +1,7 @@
-import React, {FC, useState} from 'react'
-import {InboxOutlined} from '@ant-design/icons'
+import {FC, useState} from 'react'
 import Upload, {RcFile} from 'antd/lib/upload'
+
+import {InboxOutlined} from '@ant-design/icons'
 import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 
@@ -39,12 +40,19 @@ export const ImageUpload: FC<Props> = observer(({defaultFileList, setFormData, s
 	}
 
 	return (
-		<Upload.Dragger name='image' fileList={fileList} beforeUpload={beforeUpload} maxCount={1} listType='picture'
-		                customRequest={customRequest} defaultFileList={defaultFileList} onRemove={onRemove}
-		                accept='.png, .jpg, .jpeg, .gif, .svg'
+		<Upload.Dragger
+			name='image'
+			fileList={fileList}
+			beforeUpload={beforeUpload}
+			maxCount={1}
+			listType='picture'
+			customRequest={customRequest}
+			defaultFileList={defaultFileList}
+			onRemove={onRemove}
+			accept='.png, .jpg, .jpeg, .gif, .svg'
 		>
 			<p className='ant-upload-drag-icon'>
-				<InboxOutlined/>
+				<InboxOutlined />
 			</p>
 			<p className='ant-upload-text'>Click or drag file to this area to upload</p>
 		</Upload.Dragger>

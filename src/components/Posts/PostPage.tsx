@@ -1,17 +1,18 @@
-import React, {FC, useEffect, useState} from 'react'
-import {useRouteMatch} from 'react-router-dom'
-import s from './Posts.module.css'
+import {FC, useEffect, useState} from 'react'
+
+import Card from 'antd/lib/card'
 import {CommentForm} from './CommentForm'
 import {Comments} from './Comments'
-import Card from 'antd/lib/card'
-import {Helmet} from 'react-helmet'
 import {Error404} from '../common/errors/Error404'
-import message from 'antd/lib/message'
+import {Helmet} from 'react-helmet'
 import {Posts} from './Posts'
-import postsState from '../../store/postsState'
-import commentsState from '../../store/commentsState'
 import {commentsAPI} from '../../api/comments'
+import commentsState from '../../store/commentsState'
+import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
+import postsState from '../../store/postsState'
+import s from './Posts.module.css'
+import {useRouteMatch} from 'react-router-dom'
 
 export const PostPage: FC = observer(() => {
 	const match = useRouteMatch<{ id: string }>()

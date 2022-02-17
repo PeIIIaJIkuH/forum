@@ -94,7 +94,7 @@ export enum EUserRole {
 	guest = -1,
 	user = 0,
 	moderator = 1,
-	admin = 2
+	admin = 2,
 }
 
 export interface ApiResponse {

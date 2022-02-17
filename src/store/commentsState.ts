@@ -1,9 +1,10 @@
-import {makeAutoObservable} from 'mobx'
 import {IComment, IReaction} from '../types'
+
+import {adminAPI} from '../api/admin'
 import appState from './appState'
 import {commentsAPI} from '../api/comments'
 import {getRating} from '../utils/helpers'
-import {adminAPI} from '../api/admin'
+import {makeAutoObservable} from 'mobx'
 
 class CommentsState {
 	allComments: IComment[]
@@ -45,7 +46,7 @@ class CommentsState {
 		}
 	}
 
-	async deleteComment(commentId: number, options: { postId?: number, isAdmin?: boolean } = {}) {
+	async deleteComment(commentId: number, options: {postId?: number; isAdmin?: boolean} = {}) {
 		const {isAdmin, postId} = options
 		appState.setIsLoading(true)
 		let status: boolean
@@ -60,7 +61,10 @@ class CommentsState {
 				const filteredComments = this.allComments.filter(({id}) => id !== commentId)
 				this.setAllComments(filteredComments)
 			} else {
-				this.setPostComments(this.userComments[postId].filter(({id}) => id !== commentId), postId)
+				this.setPostComments(
+					this.userComments[postId].filter(({id}) => id !== commentId),
+					postId,
+				)
 			}
 		}
 		return status

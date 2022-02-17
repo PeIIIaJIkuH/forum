@@ -1,15 +1,15 @@
-import React, {FC} from 'react'
-import s from './AdminDashboard.module.css'
-import adminState from '../../store/adminState'
 import Button from 'antd/lib/button'
-import {DeleteOutlined} from '@ant-design/icons'
-import {observer} from 'mobx-react-lite'
-import {adminAPI} from '../../api/admin'
-import message from 'antd/lib/message'
-import Empty from 'antd/lib/empty'
 import Card from 'antd/lib/card'
+import {DeleteOutlined} from '@ant-design/icons'
+import Empty from 'antd/lib/empty'
+import {FC} from 'react'
 import {Link} from 'react-router-dom'
+import {adminAPI} from '../../api/admin'
+import adminState from '../../store/adminState'
 import appState from '../../store/appState'
+import message from 'antd/lib/message'
+import {observer} from 'mobx-react-lite'
+import s from './AdminDashboard.module.css'
 
 export const Moderators: FC = observer(() => {
 	const onDelete = async (id: number) => {
@@ -29,12 +29,15 @@ export const Moderators: FC = observer(() => {
 		<div className={s.grid}>
 			{adminState.moderators.map(({id, username}) => (
 				<div key={id} className={s.card}>
-					<Link to={`/user/${id}`}>
-						{username}
-					</Link>
+					<Link to={`/user/${id}`}>{username}</Link>
 					<div>
-						<Button icon={<DeleteOutlined/>} danger className={s.close} type='link'
-						        onClick={onDelete.bind(null, id)} loading={appState.isLoading}
+						<Button
+							icon={<DeleteOutlined />}
+							danger
+							className={s.close}
+							type='link'
+							onClick={onDelete.bind(null, id)}
+							loading={appState.isLoading}
 						/>
 					</div>
 				</div>
@@ -42,7 +45,7 @@ export const Moderators: FC = observer(() => {
 		</div>
 	) : (
 		<Card>
-			<Empty className={s.empty} description='No Moderators'/>
+			<Empty className={s.empty} description='No Moderators' />
 		</Card>
 	)
 })

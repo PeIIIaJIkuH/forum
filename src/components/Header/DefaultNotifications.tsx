@@ -1,15 +1,15 @@
-import React, {FC} from 'react'
-import userState from '../../store/userState'
-import Empty from 'antd/lib/empty'
-import s from '../AdminDashboard/AdminDashboard.module.css'
-import Card from 'antd/lib/card'
-import {observer} from 'mobx-react-lite'
-import {Link} from 'react-router-dom'
-import {formatDistanceToNow} from 'date-fns'
-import appState from '../../store/appState'
-import {userAPI} from '../../api/user'
-import message from 'antd/lib/message'
 import Button from 'antd/lib/button'
+import Card from 'antd/lib/card'
+import Empty from 'antd/lib/empty'
+import {FC} from 'react'
+import {Link} from 'react-router-dom'
+import appState from '../../store/appState'
+import {formatDistanceToNow} from 'date-fns'
+import message from 'antd/lib/message'
+import {observer} from 'mobx-react-lite'
+import s from '../AdminDashboard/AdminDashboard.module.css'
+import {userAPI} from '../../api/user'
+import userState from '../../store/userState'
 
 export const DefaultNotifications: FC = observer(() => {
 	const onDelete = async () => {
@@ -29,10 +29,7 @@ export const DefaultNotifications: FC = observer(() => {
 			<Button danger onClick={onDelete} loading={appState.isLoading} type='link' className={s.deleteButton}>
 				Delete
 			</Button>
-			{userState.defaultNotifications.map(({
-				                                     id, postRating, postId,
-				                                     commentRating, comment, createdAt,
-			                                     }) => {
+			{userState.defaultNotifications.map(({id, postRating, postId, commentRating, comment, createdAt}) => {
 				let username, userId, text, link
 				if (postRating) {
 					username = postRating.author.username
@@ -60,8 +57,7 @@ export const DefaultNotifications: FC = observer(() => {
 							<Link to={`/user/${userId}`}>{username}</Link> {text} your {link}
 						</div>
 						<div className={s.wrapper}>
-							<div className={s.createdAt}>{created}
-							</div>
+							<div className={s.createdAt}>{created}</div>
 						</div>
 					</div>
 				)
@@ -69,7 +65,7 @@ export const DefaultNotifications: FC = observer(() => {
 		</>
 	) : (
 		<Card>
-			<Empty className={s.empty} description='No Notifications'/>
+			<Empty className={s.empty} description='No Notifications' />
 		</Card>
 	)
 })

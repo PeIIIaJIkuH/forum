@@ -1,6 +1,7 @@
-import {makeAutoObservable} from 'mobx'
 import {IDefaultNotification, IPostNotification, IReportNotification, IRoleNotification, IUser} from '../types'
+
 import appState from './appState'
+import {makeAutoObservable} from 'mobx'
 import {userAPI} from '../api/user'
 
 class UserState {
@@ -50,19 +51,27 @@ class UserState {
 	}
 
 	getNotificationsCount() {
-		return this.defaultNotifications.length + this.roleNotifications.length +
-			this.reportNotifications.length + this.postNotifications.length
+		return (
+			this.defaultNotifications.length +
+			this.roleNotifications.length +
+			this.reportNotifications.length +
+			this.postNotifications.length
+		)
 	}
 
 	async fetchAllNotifications() {
 		appState.setIsLoading(true)
-		const [{data: data1, status: status1},
+		const [
+			{data: data1, status: status1},
 			{data: data2, status: status2},
 			{data: data3, status: status3},
-			{data: data4, status: status4}] = await Promise.all(
-			[userAPI.fetchDefaultNotifications(), userAPI.fetchRoleNotifications(),
-				userAPI.fetchReportNotifications(), userAPI.fetchPostNotifications()],
-		)
+			{data: data4, status: status4},
+		] = await Promise.all([
+			userAPI.fetchDefaultNotifications(),
+			userAPI.fetchRoleNotifications(),
+			userAPI.fetchReportNotifications(),
+			userAPI.fetchPostNotifications(),
+		])
 		appState.setIsLoading(false)
 		if (status1) {
 			this.setDefaultNotifications(data1)
@@ -80,9 +89,12 @@ class UserState {
 
 	async deleteAllNotifications() {
 		appState.setIsLoading(true)
-		const [{status: status1}, {status: status2}, {status: status3}, {status: status4}] = await Promise.all(
-			[userAPI.deleteDefaultNotifications(), userAPI.deleteRoleNotifications(),
-				userAPI.deleteReportNotifications(), userAPI.deletePostNotifications()])
+		const [{status: status1}, {status: status2}, {status: status3}, {status: status4}] = await Promise.all([
+			userAPI.deleteDefaultNotifications(),
+			userAPI.deleteRoleNotifications(),
+			userAPI.deleteReportNotifications(),
+			userAPI.deletePostNotifications(),
+		])
 		appState.setIsLoading(false)
 		if (status1) {
 			this.setDefaultNotifications([])

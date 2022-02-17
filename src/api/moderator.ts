@@ -5,8 +5,8 @@ const deletePost = (postId: number): ApiPromise => defaultAxios.delete(`moderato
 
 const fetchReports = (): ApiPromise => defaultAxios.get('moderator/reports')
 
-const createReport = (moderatorId: number, postId: number): ApiPromise => defaultAxios.post(
-	'moderator/report/post/create', {
+const createReport = (moderatorId: number, postId: number): ApiPromise =>
+	defaultAxios.post('moderator/report/post/create', {
 		moderatorId,
 		postId,
 	})

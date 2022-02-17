@@ -1,20 +1,21 @@
-import React, {FC, useEffect} from 'react'
-import s from './Header.module.css'
+import {FC, useEffect} from 'react'
 import {Link, useLocation} from 'react-router-dom'
-import logo from '../../assets/img/logo.svg'
+
+import {Actions} from './Actions'
+import Affix from 'antd/lib/affix'
 import Button from 'antd/lib/button'
 import Image from 'antd/lib/image'
 import Layout from 'antd/lib/layout'
-import Affix from 'antd/lib/affix'
-import {Actions} from './Actions'
-import {useMediaQuery} from 'react-responsive'
 import {MobileActions} from './MobileActions'
+import {ProgressBar} from '../ProgressBar/ProgressBar'
+import appState from '../../store/appState'
+import authState from '../../store/authState'
+import logo from '../../assets/img/logo.svg'
 import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
+import s from './Header.module.css'
+import {useMediaQuery} from 'react-responsive'
 import userState from '../../store/userState'
-import authState from '../../store/authState'
-import appState from '../../store/appState'
-import {ProgressBar} from '../ProgressBar/ProgressBar'
 
 export const Header: FC = observer(() => {
 	const location = useLocation()
@@ -44,22 +45,25 @@ export const Header: FC = observer(() => {
 	return (
 		<Affix offsetTop={1} className={s.headerWrapper}>
 			<Layout.Header className={s.header}>
-				<ProgressBar/>
+				<ProgressBar />
 				<div className={s.inner}>
 					<Link to='/' className={s.logo}>
-						<Image width={50} src={logo} preview={false} alt='logo'/>
+						<Image width={50} src={logo} preview={false} alt='logo' />
 						forume
 					</Link>
-					{authState.user ?
-						!isTabletOrMobile ?
-							<Actions onSignOut={onSignOut}/>
-							:
-							<MobileActions onSignOut={onSignOut}/>
-						:
+					{authState.user ? (
+						!isTabletOrMobile ? (
+							<Actions onSignOut={onSignOut} />
+						) : (
+							<MobileActions onSignOut={onSignOut} />
+						)
+					) : (
 						<Link to='/auth/signin'>
-							<Button className={s.auth} type='link' onClick={onAuth}>Sign In</Button>
+							<Button className={s.auth} type='link' onClick={onAuth}>
+								Sign In
+							</Button>
 						</Link>
-					}
+					)}
 				</div>
 			</Layout.Header>
 		</Affix>

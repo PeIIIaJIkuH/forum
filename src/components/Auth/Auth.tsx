@@ -1,15 +1,16 @@
-import React, {FC, useState} from 'react'
-import s from './Auth.module.css'
+import {FC, useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
+
 import {AuthForm} from './AuthForm'
 import Card from 'antd/lib/card'
 import {Error403} from '../common/errors/Error403'
 import {Helmet} from 'react-helmet'
-import message from 'antd/lib/message'
-import {useForm} from 'antd/lib/form/Form'
-import {observer} from 'mobx-react-lite'
-import authState from '../../store/authState'
 import appState from '../../store/appState'
+import authState from '../../store/authState'
+import message from 'antd/lib/message'
+import {observer} from 'mobx-react-lite'
+import s from './Auth.module.css'
+import {useForm} from 'antd/lib/form/Form'
 
 type Props = {
 	register?: boolean
@@ -22,7 +23,7 @@ export const Auth: FC<Props> = observer(({register}) => {
 	const [type, setType] = useState<'user' | 'moderator' | 'admin'>('user')
 
 	if (authState.user) {
-		return <Error403 text='Sorry, you are authorized, you have no access to the authorization page.'/>
+		return <Error403 text='Sorry, you are authorized, you have no access to the authorization page.' />
 	}
 
 	type obj = {
@@ -72,11 +73,18 @@ export const Auth: FC<Props> = observer(({register}) => {
 
 	return (
 		<>
-			<Helmet><title>{title} | forume</title></Helmet>
+			<Helmet>
+				<title>{title} | forume</title>
+			</Helmet>
 			<div className={s.wrapper}>
 				<Card className={s.card} title={title} extra={extra}>
-					<AuthForm onsubmit={onSubmit} register={register} form={form} isFetching={isFetching}
-					          type={type} setType={setType}
+					<AuthForm
+						onsubmit={onSubmit}
+						register={register}
+						form={form}
+						isFetching={isFetching}
+						type={type}
+						setType={setType}
 					/>
 				</Card>
 			</div>

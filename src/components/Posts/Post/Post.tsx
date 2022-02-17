@@ -1,17 +1,18 @@
-import React, {FC} from 'react'
-import s from '../Posts.module.css'
-import Card from 'antd/lib/card'
-import Divider from 'antd/lib/divider'
-import {Rate} from './Rate'
-import {Header} from './Header'
-import {Content} from './Content'
-import {Categories} from './Categories'
-import {Footer} from './Footer'
 import {IComment, IPost} from '../../../types'
+
+import Card from 'antd/lib/card'
+import {Categories} from './Categories'
 import {Comments} from '../Comments'
+import {Content} from './Content'
+import Divider from 'antd/lib/divider'
+import {FC} from 'react'
+import {Footer} from './Footer'
+import {Header} from './Header'
 import Image from 'antd/lib/image'
-import {observer} from 'mobx-react-lite'
 import {PROTOCOL} from '../../../api'
+import {Rate} from './Rate'
+import {observer} from 'mobx-react-lite'
+import s from '../Posts.module.css'
 
 type Props = {
 	post: IPost | null

@@ -1,15 +1,16 @@
-import React, {FC} from 'react'
-import s from './AdminDashboard.module.css'
-import adminState from '../../store/adminState'
-import {Link} from 'react-router-dom'
-import Button from 'antd/lib/button'
 import {CheckOutlined, CloseOutlined} from '@ant-design/icons'
-import {adminAPI} from '../../api/admin'
-import message from 'antd/lib/message'
-import Empty from 'antd/lib/empty'
+
+import Button from 'antd/lib/button'
 import Card from 'antd/lib/card'
+import Empty from 'antd/lib/empty'
+import {FC} from 'react'
+import {Link} from 'react-router-dom'
+import {adminAPI} from '../../api/admin'
+import adminState from '../../store/adminState'
 import appState from '../../store/appState'
+import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
+import s from './AdminDashboard.module.css'
 
 export const Reports: FC = observer(() => {
 	const onAccept = async (id: number) => {
@@ -42,15 +43,21 @@ export const Reports: FC = observer(() => {
 		<div className={s.grid}>
 			{adminState.reports.map(({id, postTitle, postId}) => (
 				<div key={id} className={s.card}>
-					<Link to={`/post/${postId}`}>
-						{postTitle}
-					</Link>
+					<Link to={`/post/${postId}`}>{postTitle}</Link>
 					<div>
-						<Button icon={<CloseOutlined/>} danger className={s.close} type='link'
-						        onClick={onDismiss.bind(null, id)} loading={appState.isLoading}
+						<Button
+							icon={<CloseOutlined />}
+							danger
+							className={s.close}
+							type='link'
+							onClick={onDismiss.bind(null, id)}
+							loading={appState.isLoading}
 						/>
-						<Button icon={<CheckOutlined/>} type='link' onClick={onAccept.bind(null, id)}
-						        loading={appState.isLoading}
+						<Button
+							icon={<CheckOutlined />}
+							type='link'
+							onClick={onAccept.bind(null, id)}
+							loading={appState.isLoading}
 						/>
 					</div>
 				</div>
@@ -58,7 +65,7 @@ export const Reports: FC = observer(() => {
 		</div>
 	) : (
 		<Card>
-			<Empty className={s.empty} description='No Reports'/>
+			<Empty className={s.empty} description='No Reports' />
 		</Card>
 	)
 })

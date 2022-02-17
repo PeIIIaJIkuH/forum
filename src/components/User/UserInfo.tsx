@@ -1,16 +1,17 @@
-import React, {FC, useEffect} from 'react'
-import s from './User.module.css'
+import {FC, useEffect} from 'react'
+
+import Button from 'antd/lib/button'
 import Card from 'antd/lib/card'
-import Typography from 'antd/lib/typography'
 import Descriptions from 'antd/lib/descriptions'
 import {EUserRole} from '../../types'
-import Button from 'antd/lib/button'
-import authState from '../../store/authState'
+import Typography from 'antd/lib/typography'
 import appState from '../../store/appState'
-import {observer} from 'mobx-react-lite'
-import userState from '../../store/userState'
-import {userAPI} from '../../api/user'
+import authState from '../../store/authState'
 import {formatDistanceToNow} from 'date-fns'
+import {observer} from 'mobx-react-lite'
+import s from './User.module.css'
+import {userAPI} from '../../api/user'
+import userState from '../../store/userState'
 
 const {Title} = Typography
 
@@ -60,22 +61,27 @@ export const UserInfo: FC = observer(() => {
 		}
 	}, [isUser])
 
-	return user && (
-		<section className={s.userInfo}>
-			<Card title={<Title level={2}>{user.username}</Title>}>
-				<Descriptions title='User info' column={1}>
-					<Descriptions.Item label='E-mail'>{user.username}</Descriptions.Item>
-					<Descriptions.Item label='Created at'>{created}</Descriptions.Item>
-					<Descriptions.Item label='Last active'>{lastActive}</Descriptions.Item>
-				</Descriptions>
-				{isUser && request === -1 && (
-					<Button onClick={onRequest} loading={appState.isLoading}>Request promotion to moderator</Button>
-				)}
-				{isUser && request !== -1 && (
-					<Button onClick={onDeleteRequest} danger loading={appState.isLoading}>Delete your request to
-						moderator</Button>
-				)}
-			</Card>
-		</section>
+	return (
+		user && (
+			<section className={s.userInfo}>
+				<Card title={<Title level={2}>{user.username}</Title>}>
+					<Descriptions title='User info' column={1}>
+						<Descriptions.Item label='E-mail'>{user.username}</Descriptions.Item>
+						<Descriptions.Item label='Created at'>{created}</Descriptions.Item>
+						<Descriptions.Item label='Last active'>{lastActive}</Descriptions.Item>
+					</Descriptions>
+					{isUser && request === -1 && (
+						<Button onClick={onRequest} loading={appState.isLoading}>
+							Request promotion to moderator
+						</Button>
+					)}
+					{isUser && request !== -1 && (
+						<Button onClick={onDeleteRequest} danger loading={appState.isLoading}>
+							Delete your request to moderator
+						</Button>
+					)}
+				</Card>
+			</section>
+		)
 	)
 })

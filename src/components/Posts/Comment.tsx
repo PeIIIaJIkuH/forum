@@ -1,18 +1,19 @@
-import React, {ChangeEvent, FC, ReactNode, useRef, useState} from 'react'
+import {ChangeEvent, FC, ReactNode, useRef, useState} from 'react'
+import {DeleteOutlined, DownOutlined, EditOutlined, MoreOutlined, SaveOutlined, UpOutlined} from '@ant-design/icons'
+
 import AntComment from 'antd/lib/comment'
 import Button from 'antd/lib/button'
-import {DeleteOutlined, DownOutlined, EditOutlined, MoreOutlined, SaveOutlined, UpOutlined} from '@ant-design/icons'
-import s from './Posts.module.css'
-import TextArea from 'antd/lib/input/TextArea'
-import Popover from 'antd/lib/popover'
 import {IComment} from '../../types'
+import Popover from 'antd/lib/popover'
+import TextArea from 'antd/lib/input/TextArea'
+import appState from '../../store/appState'
+import authState from '../../store/authState'
+import commentsState from '../../store/commentsState'
+import cx from 'classnames'
 import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
-import commentsState from '../../store/commentsState'
-import authState from '../../store/authState'
+import s from './Posts.module.css'
 import useOnClickOutside from '../../utils/useOnClickOutside'
-import cx from 'classnames'
-import appState from '../../store/appState'
 
 type Props = {
 	author: ReactNode

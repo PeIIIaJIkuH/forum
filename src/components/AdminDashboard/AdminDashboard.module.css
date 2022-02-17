@@ -1,31 +1,31 @@
 .tab {
-    font-weight: 600 !important;
+	font-weight: 600 !important;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 30px;
-    grid-gap: 30px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 30px;
+	grid-gap: 30px;
 }
 
 .card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 5px;
+	padding: 10px;
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
 .close {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .empty {
-    margin: auto;
+	margin: auto;
 }
 
 .deleteButton {
-    padding: 0;
+	padding: 0;
 }

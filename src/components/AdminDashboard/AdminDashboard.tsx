@@ -1,18 +1,19 @@
-import React, {FC, useEffect} from 'react'
-import Tabs from 'antd/lib/tabs'
+import {FC, useEffect} from 'react'
+import {useHistory, useLocation} from 'react-router-dom'
+
+import {Categories} from './Categories'
+import {EUserRole} from '../../types'
+import {Error403} from '../common/errors/Error403'
 import {Helmet} from 'react-helmet'
-import s from './AdminDashboard.module.css'
+import {Moderators} from './Moderators'
+import {Reports} from './Reports'
+import {Requests} from './Requests'
+import Tabs from 'antd/lib/tabs'
 import adminState from '../../store/adminState'
 import authState from '../../store/authState'
-import {Error403} from '../common/errors/Error403'
 import {observer} from 'mobx-react-lite'
-import {Requests} from './Requests'
-import {EUserRole} from '../../types'
-import {Reports} from './Reports'
-import {Categories} from './Categories'
-import {Moderators} from './Moderators'
 import queryString from 'query-string'
-import {useHistory, useLocation} from 'react-router-dom'
+import s from './AdminDashboard.module.css'
 
 const {TabPane} = Tabs
 
@@ -21,11 +22,7 @@ export const AdminDashboard: FC = observer(() => {
 	const parsed = queryString.parse(location.search)
 	const history = useHistory()
 
-	const getTab = (name: string) => (
-		<div className={s.tab}>
-			{name}
-		</div>
-	)
+	const getTab = (name: string) => <div className={s.tab}>{name}</div>
 
 	const onChange = (key: string) => {
 		history.push({
@@ -38,7 +35,7 @@ export const AdminDashboard: FC = observer(() => {
 	}, [])
 
 	if (!authState.user || authState.role !== EUserRole.admin) {
-		return <Error403/>
+		return <Error403 />
 	}
 
 	const getCorrectType = (type: string | string[] | null): string => {
@@ -50,19 +47,21 @@ export const AdminDashboard: FC = observer(() => {
 
 	return (
 		<>
-			<Helmet><title>Admin Dashboard | forume</title></Helmet>
+			<Helmet>
+				<title>Admin Dashboard | forume</title>
+			</Helmet>
 			<Tabs centered defaultActiveKey={getCorrectType(parsed.type)} onChange={onChange}>
 				<TabPane tab={getTab('Requests')} key='requests'>
-					<Requests/>
+					<Requests />
 				</TabPane>
 				<TabPane tab={getTab('Reports')} key='reports'>
-					<Reports/>
+					<Reports />
 				</TabPane>
 				<TabPane tab={getTab('Moderators')} key='moderators'>
-					<Moderators/>
+					<Moderators />
 				</TabPane>
 				<TabPane tab={getTab('Categories')} key='categories'>
-					<Categories/>
+					<Categories />
 				</TabPane>
 			</Tabs>
 		</>

@@ -1,11 +1,12 @@
-import React, {FC, useState} from 'react'
-import Menu from 'antd/lib/menu'
-import {useHistory, useLocation} from 'react-router-dom'
 import {DislikeOutlined, FormOutlined, HomeOutlined, LikeOutlined, TagsOutlined, UserOutlined} from '@ant-design/icons'
-import {MenuItem} from './MenuItem'
+import {FC, useState} from 'react'
+import {useHistory, useLocation} from 'react-router-dom'
+
 import {CategoriesModal} from './CategoriesModal'
-import {observer} from 'mobx-react-lite'
+import Menu from 'antd/lib/menu'
+import {MenuItem} from './MenuItem'
 import authState from '../../store/authState'
+import {observer} from 'mobx-react-lite'
 
 type Props = {
 	mobile?: boolean

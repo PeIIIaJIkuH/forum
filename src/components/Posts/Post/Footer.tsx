@@ -1,10 +1,10 @@
-import React, {FC} from 'react'
-import s from '../Posts.module.css'
 import Button from 'antd/lib/button'
 import {CommentOutlined} from '@ant-design/icons'
+import {FC} from 'react'
 import {IPost} from '../../../types'
-import {useHistory} from 'react-router-dom'
 import {formatDistanceToNow} from 'date-fns'
+import s from '../Posts.module.css'
+import {useHistory} from 'react-router-dom'
 
 type Props = {
 	post: IPost

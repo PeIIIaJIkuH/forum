@@ -1,14 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import './index.css'
+
 import {App} from './App'
-import {CookiesProvider} from 'react-cookie'
 import {BrowserRouter} from 'react-router-dom'
+import {CookiesProvider} from 'react-cookie'
+import ReactDOM from 'react-dom'
 
 ReactDOM.render(
 	<CookiesProvider>
 		<BrowserRouter>
-			<App/>
+			<App />
 		</BrowserRouter>
 	</CookiesProvider>,
 	document.getElementById('root'),

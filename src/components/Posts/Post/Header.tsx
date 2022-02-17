@@ -1,6 +1,3 @@
-import React, {FC, useState} from 'react'
-import s from '../Posts.module.css'
-import Button from 'antd/lib/button'
 import {
 	DeleteOutlined,
 	EditOutlined,
@@ -8,17 +5,21 @@ import {
 	IssuesCloseOutlined,
 	MoreOutlined,
 } from '@ant-design/icons'
-import {Link, useHistory} from 'react-router-dom'
-import Popover from 'antd/lib/popover'
 import {EUserRole, IPost} from '../../../types'
-import message from 'antd/lib/message'
-import {observer} from 'mobx-react-lite'
-import postsState from '../../../store/postsState'
-import authState from '../../../store/authState'
+import {FC, useState} from 'react'
+import {Link, useHistory} from 'react-router-dom'
+
+import Button from 'antd/lib/button'
+import Popover from 'antd/lib/popover'
 import {adminAPI} from '../../../api/admin'
+import appState from '../../../store/appState'
+import authState from '../../../store/authState'
+import message from 'antd/lib/message'
 import {moderatorAPI} from '../../../api/moderator'
 import moderatorState from '../../../store/moderatorState'
-import appState from '../../../store/appState'
+import {observer} from 'mobx-react-lite'
+import postsState from '../../../store/postsState'
+import s from '../Posts.module.css'
 
 type Props = {
 	post: IPost
