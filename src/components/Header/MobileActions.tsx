@@ -3,7 +3,7 @@ import {FC, useState} from 'react'
 
 import Button from 'antd/lib/button'
 import {EUserRole} from '../../types'
-import {Notifications} from './Notifications'
+import {Notifications} from '../Notifications/Notifications'
 import Popover from 'antd/lib/popover'
 import appState from '../../store/appState'
 import authState from '../../store/authState'

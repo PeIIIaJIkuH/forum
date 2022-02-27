@@ -32,7 +32,7 @@ export const Moderators: FC = observer(() => {
 					<Link to={`/user/${id}`}>{username}</Link>
 					<div>
 						<Button
-							icon={<DeleteOutlined />}
+							icon={<DeleteOutlined/>}
 							danger
 							className={s.close}
 							type='link'
@@ -45,7 +45,7 @@ export const Moderators: FC = observer(() => {
 		</div>
 	) : (
 		<Card>
-			<Empty className={s.empty} description='No Moderators' />
+			<Empty className={s.empty} description='No Moderators'/>
 		</Card>
 	)
 })

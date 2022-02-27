@@ -21,7 +21,7 @@ export const Error404: FC<Props> = ({text}) => {
 			<Helmet>
 				<title>Error 404 | forume</title>
 			</Helmet>
-			<Result status='404' title='404' subTitle={subTitle} extra={extra} />
+			<Result status='404' title='404' subTitle={subTitle} extra={extra}/>
 		</>
 	)
 }

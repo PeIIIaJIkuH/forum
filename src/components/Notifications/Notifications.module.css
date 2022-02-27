@@ -1,0 +1,49 @@
+.wrapper {
+	position: relative;
+	min-height: 180px;
+}
+
+.deleteAllButton {
+	margin-left: 20px;
+}
+
+.deleteButton {
+	position: absolute !important;
+	right: 0;
+	top: 0;
+}
+
+.notification {
+	margin-bottom: 5px;
+}
+
+.closeIcon {
+	font-size: 10px;
+}
+
+.tab {
+	font-weight: 600 !important;
+}
+
+.tabs {
+	margin-bottom: 0;
+}
+
+.notifications {
+	margin-right: 10px;
+}
+
+.popoverNotifications {
+	z-index: 15;
+	position: fixed;
+}
+
+.title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.createdAt {
+	font-size: 12px;
+	margin-left: 10px;
+}

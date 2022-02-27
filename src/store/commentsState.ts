@@ -46,7 +46,7 @@ class CommentsState {
 		}
 	}
 
-	async deleteComment(commentId: number, options: {postId?: number; isAdmin?: boolean} = {}) {
+	async deleteComment(commentId: number, options: { postId?: number; isAdmin?: boolean } = {}) {
 		const {isAdmin, postId} = options
 		appState.setIsLoading(true)
 		let status: boolean

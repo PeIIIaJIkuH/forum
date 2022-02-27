@@ -15,6 +15,10 @@ export const Error403: FC<Props> = observer(({text}) => {
 	const location = useLocation()
 
 	const onClick = async () => {
+		if (location.pathname === '/auth/signup' || location.pathname === '/admin' || location.pathname ===
+			'/moderator') {
+			return
+		}
 		appState.setUrl(location.pathname)
 	}
 

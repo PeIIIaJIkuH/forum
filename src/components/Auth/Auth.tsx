@@ -23,7 +23,7 @@ export const Auth: FC<Props> = observer(({register}) => {
 	const [type, setType] = useState<'user' | 'moderator' | 'admin'>('user')
 
 	if (authState.user) {
-		return <Error403 text='Sorry, you are authorized, you have no access to the authorization page.' />
+		return <Error403 text='Sorry, you are authorized, you have no access to the authorization page.'/>
 	}
 
 	type obj = {

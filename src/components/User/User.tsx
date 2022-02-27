@@ -15,7 +15,7 @@ import {useRouteMatch} from 'react-router-dom'
 import userState from '../../store/userState'
 
 export const User: FC = observer(() => {
-	const match = useRouteMatch<{id: string}>()
+	const match = useRouteMatch<{ id: string }>()
 	const urlId = match.params.id
 	const [check, setCheck] = useState(true)
 	const title = userState.user?.username || 'User Page'
@@ -32,7 +32,7 @@ export const User: FC = observer(() => {
 	}, [urlId])
 
 	if ((urlId !== undefined && isNaN(+urlId)) || !check) {
-		return <Error404 />
+		return <Error404/>
 	}
 
 	const onClick = ({key}: any) => {
@@ -53,14 +53,14 @@ export const User: FC = observer(() => {
 				<Helmet>
 					<title>{title} | forume</title>
 				</Helmet>
-				<UserInfo />
+				<UserInfo/>
 				<Menu className={s.menu} mode='horizontal' defaultSelectedKeys={['created']} onClick={onClick}>
-					<MenuItem key='created' title='Created Posts' icon={<UserOutlined />} forAll available />
-					<MenuItem key='up-voted' title='Upvoted Posts' icon={<LikeOutlined />} forAll available />
-					<MenuItem key='down-voted' title='Downvoted Posts' icon={<DislikeOutlined />} forAll available />
-					<MenuItem key='commented' title='Commented Posts' icon={<CommentOutlined />} forAll available />
+					<MenuItem key='created' title='Created Posts' icon={<UserOutlined/>} forAll available/>
+					<MenuItem key='up-voted' title='Upvoted Posts' icon={<LikeOutlined/>} forAll available/>
+					<MenuItem key='down-voted' title='Downvoted Posts' icon={<DislikeOutlined/>} forAll available/>
+					<MenuItem key='commented' title='Commented Posts' icon={<CommentOutlined/>} forAll available/>
 				</Menu>
-				<Posts userComments={commentsState.userComments} />
+				<Posts userComments={commentsState.userComments}/>
 			</>
 		)
 	)

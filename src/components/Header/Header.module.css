@@ -32,61 +32,19 @@
 	margin-right: 5px;
 }
 
-.search {
-	width: 200px;
-}
-
 .actions {
 	display: flex;
 	align-items: center;
 	height: fit-content;
 }
 
-.profile {
-	display: flex;
-	align-items: center;
-}
-
-.profile div {
-	border-radius: 50%;
-	color: rgba(0, 0, 0, 0.5);
-}
-
 .username {
 	margin-right: 15px;
-}
-
-.notifications {
-	margin-right: 10px;
 }
 
 .auth {
 	padding-left: 0;
 	padding-right: 0;
-}
-
-.createdAt {
-	color: #959595;
-	font-size: 10px;
-}
-
-.closeIcon {
-	font-size: 10px;
-}
-
-.wrapper {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.title {
-	display: flex;
-	justify-content: space-between;
-}
-
-.notification {
-	margin-bottom: 5px;
 }
 
 .content {
@@ -95,23 +53,6 @@
 	align-items: center;
 }
 
-.popoverNotifications {
-	z-index: 15;
-	position: fixed;
-}
-
 .dashboard {
 	margin-right: 15px;
-}
-
-.empty {
-	margin: auto;
-}
-
-.tabs {
-	margin-bottom: 0;
-}
-
-.tab {
-	font-weight: 600 !important;
 }

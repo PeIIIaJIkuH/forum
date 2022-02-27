@@ -1,211 +1,211 @@
 .post {
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
 }
 
 @media (max-width: 1200px) {
-    .post + .post {
-        margin-top: 20px;
-    }
+	.post + .post {
+		margin-top: 20px;
+	}
 }
 
 @media (min-width: 1201px) {
-    .post + .post {
-        margin-top: 40px;
-    }
+	.post + .post {
+		margin-top: 40px;
+	}
 
-    .post {
-        margin-bottom: 40px;
-    }
+	.post {
+		margin-bottom: 40px;
+	}
 }
 
 .title {
-    font-size: 20px;
-    color: black;
-    padding-left: 0;
-    padding-right: 0;
-    height: fit-content;
+	font-size: 20px;
+	color: black;
+	padding-left: 0;
+	padding-right: 0;
+	height: fit-content;
 }
 
 .content {
-    color: #959595;
-    font-size: 16px;
+	color: #959595;
+	font-size: 16px;
 }
 
 .line {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .ratingNumber {
-    margin: 4px 0;
+	margin: 4px 0;
 }
 
 .up:hover, .up:focus {
-    color: #00b594;
-    border-color: #00b594;
+	color: #00b594;
+	border-color: #00b594;
 }
 
 .commentUp:hover, .commentUp:focus {
-    color: #00b594;
+	color: #00b594;
 }
 
 .commentUp::selection {
-    background: #00b594;
+	background: #00b594;
 }
 
 .ratedUp {
-    color: #00b594;
-    border-color: #00b594;
+	color: #00b594;
+	border-color: #00b594;
 }
 
 .commentRatedUp {
-    color: #00b594;
+	color: #00b594;
 }
 
 .down:hover, .down:focus {
-    color: tomato;
-    border-color: tomato;
+	color: tomato;
+	border-color: tomato;
 }
 
 .down::selection {
-    background: tomato;
+	background: tomato;
 }
 
 .downComment:hover, .downComment:focus {
-    color: tomato;
+	color: tomato;
 }
 
 .downComment::selection {
-    background: tomato;
+	background: tomato;
 }
 
 .onFocus {
-    color: rgba(0, 0, 0, 0.85);
-    border-color: #d9d9d9;
+	color: rgba(0, 0, 0, 0.85);
+	border-color: #d9d9d9;
 }
 
 .ratedDown {
-    color: tomato;
-    border-color: tomato;
+	color: tomato;
+	border-color: tomato;
 }
 
 .commentRatedDown {
-    color: tomato;
+	color: tomato;
 }
 
 .footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .divider {
-    margin: 12px 0;
+	margin: 12px 0;
 }
 
 .categories {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 @media (max-width: 1200px) {
-    .comments {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
+	.comments {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 }
 
 @media (min-width: 1201px) {
-    .comments {
-        margin-top: 40px;
-    }
+	.comments {
+		margin-top: 40px;
+	}
 }
 
 .commentsCard {
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
 }
 
 .commentsTitle {
-    font-size: 24px;
-    font-weight: 500;
+	font-size: 24px;
+	font-weight: 500;
 }
 
 .myPostsTitle {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 .tag {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 10px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-bottom: 10px;
 }
 
 .user {
-    padding: 0;
+	padding: 0;
 }
 
 .addComment {
-    margin-right: 20px;
+	margin-right: 20px;
 }
 
 .icon {
-    font-size: 12px;
+	font-size: 12px;
 }
 
 .actions {
-    display: flex;
+	display: flex;
 }
 
 .more {
-    transform: translateX(50%);
+	transform: translateX(50%);
 }
 
 .rating {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 @media (max-width: 1200px) {
-    .rating {
-        margin-right: 15px;
-    }
+	.rating {
+		margin-right: 15px;
+	}
 }
 
 @media (min-width: 1201px) {
-    .rating {
-        margin-right: 20px;
-    }
+	.rating {
+		margin-right: 20px;
+	}
 }
 
 
 .empty {
-    margin: auto;
+	margin: auto;
 }
 
 .main {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
 }
 
 .searchByCategories {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
 }
 
 @media (max-width: 1200px) {
-    .searchByCategories {
-        margin-bottom: 20px;
-    }
+	.searchByCategories {
+		margin-bottom: 20px;
+	}
 }
 
 @media (min-width: 1201px) {
-    .searchByCategories {
-        margin-bottom: 40px;
-    }
+	.searchByCategories {
+		margin-bottom: 40px;
+	}
 }

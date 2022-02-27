@@ -20,7 +20,7 @@ export const CategoriesSearch: FC<Props> = observer(({closeModal, mobile}) => {
 	const [isFetching, setIsFetching] = useState(false)
 	const [form] = useForm()
 
-	type obj = {categories: string[]}
+	type obj = { categories: string[] }
 	const onSubmit = async ({categories}: obj) => {
 		if (mobile && closeModal) {
 			closeModal()
@@ -39,7 +39,7 @@ export const CategoriesSearch: FC<Props> = observer(({closeModal, mobile}) => {
 
 	return (
 		<Card className={s.card}>
-			<CategoriesSearchForm onSubmit={onSubmit} form={form} isFetching={isFetching} />
+			<CategoriesSearchForm onSubmit={onSubmit} form={form} isFetching={isFetching}/>
 		</Card>
 	)
 })

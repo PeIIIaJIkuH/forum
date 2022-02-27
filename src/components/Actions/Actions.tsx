@@ -12,12 +12,12 @@ import s from './Actions.module.css'
 export const Actions: FC = observer(() => (
 	<div className='actions'>
 		<Link className={s.addPost} to='/create'>
-			<Button type='primary' icon={<PlusOutlined />} disabled={!authState.user || !!postsState.editing}>
+			<Button type='primary' icon={<PlusOutlined/>} disabled={!authState.user || !!postsState.editing}>
 				Add post
 			</Button>
 		</Link>
 		<div className={s.wrapper}>
-			<CategoriesSearch />
+			<CategoriesSearch/>
 		</div>
 		<Layout.Footer className={s.footer}>
 			<div>by PeIIIaJIkuH and indecember</div>

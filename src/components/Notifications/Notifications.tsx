@@ -12,7 +12,7 @@ import Tabs from 'antd/lib/tabs'
 import appState from '../../store/appState'
 import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
-import s from './Header.module.css'
+import s from './Notifications.module.css'
 import userState from '../../store/userState'
 
 const {TabPane} = Tabs
@@ -38,12 +38,12 @@ export const Notifications: FC = observer(() => {
 
 	const deleteButton = (
 		<Button type='text' size='small' loading={appState.isLoading} disabled={!userState.defaultNotifications}
-		        icon={<DeleteOutlined className={s.closeIcon}/>} danger onClick={onDelete}
+		        icon={<DeleteOutlined className={s.closeIcon}/>} danger onClick={onDelete} className={s.deleteAllButton}
 		/>
 	)
 
 	const getTab = (name: string, count: number) => (
-		<Badge count={count} size='small' offset={[0, -5]}>
+		<Badge count={count} size='small' offset={[0, -5]} overflowCount={10}>
 			<div className={s.tab}>
 				{name}
 			</div>
@@ -51,7 +51,7 @@ export const Notifications: FC = observer(() => {
 	)
 
 	const content = (
-		<Tabs centered className={s.tabs} tabBarExtraContent={deleteButton}>
+		<Tabs centered className={s.tabs} tabBarExtraContent={userState.getNotificationsCount() && deleteButton}>
 			<TabPane tab={getTab('Default', userState.defaultNotifications.length)} key='default'>
 				<DefaultNotifications/>
 			</TabPane>

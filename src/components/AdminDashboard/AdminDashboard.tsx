@@ -14,6 +14,7 @@ import authState from '../../store/authState'
 import {observer} from 'mobx-react-lite'
 import queryString from 'query-string'
 import s from './AdminDashboard.module.css'
+import Badge from 'antd/lib/badge'
 
 const {TabPane} = Tabs
 
@@ -22,7 +23,13 @@ export const AdminDashboard: FC = observer(() => {
 	const parsed = queryString.parse(location.search)
 	const history = useHistory()
 
-	const getTab = (name: string) => <div className={s.tab}>{name}</div>
+	const getTab = (name: string, count?: number) => count ? (
+		<Badge count={count} size='small' offset={[0, -5]} overflowCount={10}>
+			<div className={s.tab}>{name}</div>
+		</Badge>
+	) : (
+		<div className={s.tab}>{name}</div>
+	)
 
 	const onChange = (key: string) => {
 		history.push({
@@ -35,7 +42,7 @@ export const AdminDashboard: FC = observer(() => {
 	}, [])
 
 	if (!authState.user || authState.role !== EUserRole.admin) {
-		return <Error403 />
+		return <Error403/>
 	}
 
 	const getCorrectType = (type: string | string[] | null): string => {
@@ -51,17 +58,17 @@ export const AdminDashboard: FC = observer(() => {
 				<title>Admin Dashboard | forume</title>
 			</Helmet>
 			<Tabs centered defaultActiveKey={getCorrectType(parsed.type)} onChange={onChange}>
-				<TabPane tab={getTab('Requests')} key='requests'>
-					<Requests />
+				<TabPane tab={getTab('Requests', adminState.requests.length)} key='requests'>
+					<Requests/>
 				</TabPane>
-				<TabPane tab={getTab('Reports')} key='reports'>
-					<Reports />
+				<TabPane tab={getTab('Reports', adminState.reports.length)} key='reports'>
+					<Reports/>
 				</TabPane>
 				<TabPane tab={getTab('Moderators')} key='moderators'>
-					<Moderators />
+					<Moderators/>
 				</TabPane>
 				<TabPane tab={getTab('Categories')} key='categories'>
-					<Categories />
+					<Categories/>
 				</TabPane>
 			</Tabs>
 		</>

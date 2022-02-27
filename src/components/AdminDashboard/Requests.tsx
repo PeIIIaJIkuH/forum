@@ -48,7 +48,7 @@ export const Requests: FC = observer(() => {
 					<Link to={`/user/${user.id}`}>{user.username}</Link>
 					<div>
 						<Button
-							icon={<CloseOutlined />}
+							icon={<CloseOutlined/>}
 							danger
 							className={s.close}
 							type='link'
@@ -56,7 +56,7 @@ export const Requests: FC = observer(() => {
 							loading={appState.isLoading}
 						/>
 						<Button
-							icon={<CheckOutlined />}
+							icon={<CheckOutlined/>}
 							type='link'
 							onClick={onAccept.bind(null, id)}
 							loading={appState.isLoading}
@@ -67,7 +67,7 @@ export const Requests: FC = observer(() => {
 		</div>
 	) : (
 		<Card>
-			<Empty className={s.empty} description='No Requests' />
+			<Empty className={s.empty} description='No Requests'/>
 		</Card>
 	)
 })

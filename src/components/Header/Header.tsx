@@ -36,7 +36,8 @@ export const Header: FC = observer(() => {
 	}
 
 	const onAuth = () => {
-		if (location.pathname === '/auth/signup') {
+		if (location.pathname === '/auth/signup' || location.pathname === '/admin' || location.pathname ===
+			'/moderator') {
 			return
 		}
 		appState.setUrl(location.pathname)
@@ -45,17 +46,17 @@ export const Header: FC = observer(() => {
 	return (
 		<Affix offsetTop={1} className={s.headerWrapper}>
 			<Layout.Header className={s.header}>
-				<ProgressBar />
+				<ProgressBar/>
 				<div className={s.inner}>
 					<Link to='/' className={s.logo}>
-						<Image width={50} src={logo} preview={false} alt='logo' />
+						<Image width={50} src={logo} preview={false} alt='logo'/>
 						forume
 					</Link>
 					{authState.user ? (
 						!isTabletOrMobile ? (
-							<Actions onSignOut={onSignOut} />
+							<Actions onSignOut={onSignOut}/>
 						) : (
-							<MobileActions onSignOut={onSignOut} />
+							<MobileActions onSignOut={onSignOut}/>
 						)
 					) : (
 						<Link to='/auth/signin'>

@@ -33,7 +33,7 @@ export const Categories: FC = observer(() => {
 					<Link to={`/by-categories?${categoriesQuery(name)}`}>{name}</Link>
 					<div>
 						<Button
-							icon={<DeleteOutlined />}
+							icon={<DeleteOutlined/>}
 							danger
 							className={s.close}
 							type='link'
@@ -46,7 +46,7 @@ export const Categories: FC = observer(() => {
 		</div>
 	) : (
 		<Card>
-			<Empty className={s.empty} description='No Categories' />
+			<Empty className={s.empty} description='No Categories'/>
 		</Card>
 	)
 })

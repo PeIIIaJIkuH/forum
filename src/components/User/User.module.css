@@ -1,25 +1,25 @@
 .userInfo {
-    margin-bottom: 40px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
-    border-radius: 10px;
+	margin-bottom: 40px;
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+	border-radius: 10px;
 }
 
 .userInfo p {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .menu {
-    margin-bottom: 40px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
-    border-radius: 10px;
-    display: flex;
+	margin-bottom: 40px;
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+	border-radius: 10px;
+	display: flex;
 }
 
 .menuItem {
-    flex: 1 1 0;
-    text-align: left;
+	flex: 1 1 0;
+	text-align: left;
 }
 
 .tab {
-    font-weight: 600 !important;
+	font-weight: 600 !important;
 }

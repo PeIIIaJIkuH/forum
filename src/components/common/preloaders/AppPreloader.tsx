@@ -5,28 +5,28 @@ export const AppPreloader: FC = () => (
 	<div className={s.wrapper}>
 		<div className={s.boxes}>
 			<div className={s.box}>
-				<div />
-				<div />
-				<div />
-				<div />
+				<div/>
+				<div/>
+				<div/>
+				<div/>
 			</div>
 			<div className={s.box}>
-				<div />
-				<div />
-				<div />
-				<div />
+				<div/>
+				<div/>
+				<div/>
+				<div/>
 			</div>
 			<div className={s.box}>
-				<div />
-				<div />
-				<div />
-				<div />
+				<div/>
+				<div/>
+				<div/>
+				<div/>
 			</div>
 			<div className={s.box}>
-				<div />
-				<div />
-				<div />
-				<div />
+				<div/>
+				<div/>
+				<div/>
+				<div/>
 			</div>
 		</div>
 	</div>

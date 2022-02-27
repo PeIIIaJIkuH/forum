@@ -46,7 +46,7 @@ export const Reports: FC = observer(() => {
 					<Link to={`/post/${postId}`}>{postTitle}</Link>
 					<div>
 						<Button
-							icon={<CloseOutlined />}
+							icon={<CloseOutlined/>}
 							danger
 							className={s.close}
 							type='link'
@@ -54,7 +54,7 @@ export const Reports: FC = observer(() => {
 							loading={appState.isLoading}
 						/>
 						<Button
-							icon={<CheckOutlined />}
+							icon={<CheckOutlined/>}
 							type='link'
 							onClick={onAccept.bind(null, id)}
 							loading={appState.isLoading}
@@ -65,7 +65,7 @@ export const Reports: FC = observer(() => {
 		</div>
 	) : (
 		<Card>
-			<Empty className={s.empty} description='No Reports' />
+			<Empty className={s.empty} description='No Reports'/>
 		</Card>
 	)
 })

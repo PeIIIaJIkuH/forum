@@ -61,72 +61,72 @@ export const App: FC = observer(() => {
 	}, [location.pathname])
 
 	if (!appState.initialized) {
-		return <AppPreloader />
+		return <AppPreloader/>
 	}
 
 	return (
 		<div className={s.App}>
 			<Layout className={s.layout}>
-				<Header />
+				<Header/>
 				<Layout className={s.innerLayout}>
 					{!isTabletOrMobile && (
 						<Affix offsetTop={105} className={cx(s.affix, s.menu)}>
 							<Sider theme='light' trigger={null} className={s.sider}>
-								<LeftMenu />
+								<LeftMenu/>
 							</Sider>
 						</Affix>
 					)}
 					<Content className={s.content}>
 						<Switch>
 							<Route exact path='/auth/signup'>
-								<Auth register />
+								<Auth register/>
 							</Route>
 							<Route exact path='/auth/signin'>
-								<Auth />
+								<Auth/>
 							</Route>
 							<Route exact path={['/create', '/edit']}>
-								<CreatePost />
+								<CreatePost/>
 							</Route>
 							<Route exact path='/post/:id'>
-								<PostPage />
+								<PostPage/>
 							</Route>
 							<Route exact path='/user/:id'>
-								<User />
+								<User/>
 							</Route>
 							<Route exact path='/my'>
-								<Posts type='my' />
+								<Posts type='my'/>
 							</Route>
 							<Route exact path='/up-voted'>
-								<Posts type='up-voted' />
+								<Posts type='up-voted'/>
 							</Route>
 							<Route exact path='/down-voted'>
-								<Posts type='down-voted' />
+								<Posts type='down-voted'/>
 							</Route>
 							<Route exact path='/by-categories'>
-								<Posts type='categories' />
+								<Posts type='categories'/>
 							</Route>
 							<Route exact path='/'>
-								<Posts />
+								<Posts/>
 							</Route>
 							<Route exact path='/admin'>
-								<AdminDashboard />
+								<AdminDashboard/>
 							</Route>
 							<Route exact path='/moderator'>
-								<ModeratorDashboard />
+								<ModeratorDashboard/>
 							</Route>
 							<Route>
-								<Error404 />
+								<Error404/>
 							</Route>
 						</Switch>
 					</Content>
 					{!isTabletOrMobile && (
 						<Affix offsetTop={105} className={cx(s.affix, s.actions)}>
 							<Sider theme='light' trigger={null} className={s.sider}>
-								<Actions />
+								<Actions/>
 							</Sider>
 						</Affix>
 					)}
-					{isTabletOrMobile && <RightMenu />}
+					{isTabletOrMobile && <RightMenu/>}
 				</Layout>
 			</Layout>
 		</div>

@@ -17,7 +17,7 @@ const tailLayout = {
 }
 
 type Props = {
-	onsubmit: (obj: {username: string; email: string; password: string; adminToken: string}) => Promise<void>
+	onsubmit: (obj: { username: string; email: string; password: string; adminToken: string }) => Promise<void>
 	register?: boolean
 	form: FormInstance
 	isFetching: boolean
@@ -37,12 +37,12 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 				</>
 			}
 		>
-			<InfoCircleOutlined className='inputInfo' />
+			<InfoCircleOutlined className='inputInfo'/>
 		</Tooltip>
 	)
 	const emailInfo = (
 		<Tooltip title={<div>Just valid E-mail.</div>}>
-			<InfoCircleOutlined className='inputInfo' />
+			<InfoCircleOutlined className='inputInfo'/>
 		</Tooltip>
 	)
 	const passwordInfo = (
@@ -57,12 +57,12 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 				</>
 			}
 		>
-			<InfoCircleOutlined className='inputInfo' />
+			<InfoCircleOutlined className='inputInfo'/>
 		</Tooltip>
 	)
 	const adminTokenInfo = (
 		<Tooltip title={<div>Enter admin token to register as admin</div>}>
-			<InfoCircleOutlined className='inputInfo' />
+			<InfoCircleOutlined className='inputInfo'/>
 		</Tooltip>
 	)
 
@@ -78,7 +78,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 				colon={false}
 				label={register && usernameInfo}
 			>
-				<Input prefix={<UserOutlined />} placeholder='Username' autoFocus />
+				<Input prefix={<UserOutlined/>} placeholder='Username' autoFocus/>
 			</Form.Item>
 			{register && (
 				<Form.Item
@@ -93,7 +93,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 						},
 					]}
 				>
-					<Input prefix='@' placeholder='E-mail' />
+					<Input prefix='@' placeholder='E-mail'/>
 				</Form.Item>
 			)}
 			<Form.Item
@@ -102,7 +102,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 				colon={false}
 				label={register && passwordInfo}
 			>
-				<Input.Password prefix={<LockOutlined />} placeholder='Password' />
+				<Input.Password prefix={<LockOutlined/>} placeholder='Password'/>
 			</Form.Item>
 			{register && (
 				<RadioGroup defaultValue='user' onChange={onChange} className={s.radioGroup}>
@@ -124,7 +124,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 					label={register && adminTokenInfo}
 					rules={[defaultValidator('AdminToken', register)]}
 				>
-					<Input placeholder='Admin token' />
+					<Input placeholder='Admin token'/>
 				</Form.Item>
 			)}
 			<Form.Item {...tailLayout} className={s.submit}>

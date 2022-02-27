@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom'
 ReactDOM.render(
 	<CookiesProvider>
 		<BrowserRouter>
-			<App />
+			<App/>
 		</BrowserRouter>
 	</CookiesProvider>,
 	document.getElementById('root'),

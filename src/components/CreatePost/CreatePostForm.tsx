@@ -42,7 +42,7 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 		}
 	}, [location.pathname])
 
-	type obj = {title: string; content: string; categories: string[]}
+	type obj = { title: string; content: string; categories: string[] }
 	const onSubmit = async ({title, content, categories}: obj) => {
 		let imagePath = postsState.editing?.imagePath,
 			isImage = postsState.editing?.isImage
@@ -112,7 +112,7 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 				rules={[defaultValidator('Title')]}
 				initialValue={postsState.editing?.title}
 			>
-				<Input autoFocus />
+				<Input autoFocus/>
 			</Form.Item>
 			<Form.Item
 				label='Content'
@@ -120,7 +120,7 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 				initialValue={postsState.editing?.content}
 				rules={!formData ? [defaultValidator('Content')] : undefined}
 			>
-				<TextArea allowClear autoSize={{minRows: 3, maxRows: 10}} showCount />
+				<TextArea allowClear autoSize={{minRows: 3, maxRows: 10}} showCount/>
 			</Form.Item>
 			<Form.Item label='Image' name='image'>
 				<ImageUpload
@@ -144,14 +144,14 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 				</Select>
 			</Form.Item>
 			<Form.Item className={s.buttons} {...tailLayout}>
-				<Button type='primary' danger onClick={onCancel} icon={<StopOutlined />}>
+				<Button type='primary' danger onClick={onCancel} icon={<StopOutlined/>}>
 					Cancel
 				</Button>
 				<Button
 					className={s.create}
 					type='primary'
 					htmlType='submit'
-					icon={postsState.editing ? <SaveOutlined /> : <CloudUploadOutlined />}
+					icon={postsState.editing ? <SaveOutlined/> : <CloudUploadOutlined/>}
 					loading={isFetching}
 				>
 					{postsState.editing ? 'Save' : 'Create'}

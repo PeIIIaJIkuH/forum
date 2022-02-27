@@ -27,10 +27,10 @@ export const CreatePost: FC = observer(() => {
 	}, [location.search])
 
 	if (!authState.user) {
-		return <Error403 />
+		return <Error403/>
 	}
 	if (location.pathname.indexOf('/edit') === 0 && !postsState.editing) {
-		return <Error404 />
+		return <Error404/>
 	}
 
 	return (
@@ -44,7 +44,7 @@ export const CreatePost: FC = observer(() => {
 					title={(postsState.editing ? 'Edit' : 'Create') + ' post'}
 					headStyle={{fontSize: '20px', fontWeight: 600}}
 				>
-					<CreatePostForm setIsFetching={setIsFetching} isFetching={isFetching} />
+					<CreatePostForm setIsFetching={setIsFetching} isFetching={isFetching}/>
 				</Card>
 			</div>
 		</>
