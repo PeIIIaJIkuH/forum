@@ -29,7 +29,7 @@ export const CommentForm: FC<Props> = ({onSubmit}) => {
 			</Form.Item>
 			<Form.Item>
 				<Button className={s.addComment} type='primary' htmlType='submit' disabled={!authState.user}
-				        loading={appState.isLoading}
+					loading={appState.isLoading}
 				>
 					Add Comment
 				</Button>

@@ -38,7 +38,7 @@ export const Notifications: FC = observer(() => {
 
 	const deleteButton = (
 		<Button type='text' size='small' loading={appState.isLoading} disabled={!userState.defaultNotifications}
-		        icon={<DeleteOutlined className={s.closeIcon}/>} danger onClick={onDelete} className={s.deleteAllButton}
+			icon={<DeleteOutlined className={s.closeIcon}/>} danger onClick={onDelete} className={s.deleteAllButton}
 		/>
 	)
 
@@ -69,10 +69,10 @@ export const Notifications: FC = observer(() => {
 
 	return (
 		<Badge className={s.notifications} offset={[-5, 5]} size='small' overflowCount={10}
-		       count={userState.getNotificationsCount()}
+			count={userState.getNotificationsCount()}
 		>
 			<Popover placement='bottom' trigger='click' onVisibleChange={handleVisibleChange} content={content}
-			         overlayClassName={s.popoverNotifications} visible={visible}
+				overlayClassName={s.popoverNotifications} visible={visible}
 			>
 				<Button type='text' icon={<BellOutlined/>}/>
 			</Popover>

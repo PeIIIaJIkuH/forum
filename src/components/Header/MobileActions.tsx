@@ -35,7 +35,7 @@ export const MobileActions: FC<Props> = observer(({onSignOut}) => {
 
 	const content = (
 		<div className={s.content}>
-			<Button type='link' onClick={() => onClick(`/user/${authState.user?.id}`)}>
+			<Button type='link' onClick={onClick.bind(null, `/user/${authState.user?.id}`)}>
 				Profile
 			</Button>
 			{authState.role === EUserRole.admin && (
@@ -57,15 +57,12 @@ export const MobileActions: FC<Props> = observer(({onSignOut}) => {
 	return (
 		<div className='mobileActions'>
 			<Notifications/>
-			<Popover placement='bottom' content={content} trigger='click'
-			         visible={visible}
-			         onVisibleChange={handleVisibleChange}
+			<Popover placement='bottom' content={content} trigger='click' visible={visible}
+				onVisibleChange={handleVisibleChange}
 			>
 				<Button type='text'>{authState.user?.username}</Button>
 			</Popover>
-			<Button type='text' icon={!appState.isMenuOpen ? <MenuOutlined/> : <CloseOutlined/>}
-			        onClick={toggleMenu}
-			/>
+			<Button type='text' icon={!appState.isMenuOpen ? <MenuOutlined/> : <CloseOutlined/>} onClick={toggleMenu}/>
 		</div>
 	)
 })

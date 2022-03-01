@@ -54,9 +54,7 @@ export const Posts: FC<Props> = observer(({type, userComments, postId}) => {
 					postsState.fetchPostsByCategories([categories]).then()
 				}
 			}
-		} else if (type === 'post-page') {
-
-		} else {
+		} else if (type === undefined) {
 			setTitle('Home')
 			postsState.fetchAllPosts().then()
 		}
@@ -72,7 +70,9 @@ export const Posts: FC<Props> = observer(({type, userComments, postId}) => {
 
 	return (
 		<>
-			<Helmet><title>{title} | forume</title></Helmet>
+			<Helmet>
+				<title>{title} | forume</title>
+			</Helmet>
 			{type === 'categories' && <>
 				<section className={s.searchByCategories}>
 					<Card title={<Typography.Title level={4}>Search by Categories</Typography.Title>}>

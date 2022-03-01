@@ -39,9 +39,7 @@ export const CreatePost: FC = observer(() => {
 				<title>Create Post | forume</title>
 			</Helmet>
 			<div className={s.wrapper}>
-				<Card
-					className={s.card}
-					title={(postsState.editing ? 'Edit' : 'Create') + ' post'}
+				<Card className={s.card} title={(postsState.editing ? 'Edit' : 'Create') + ' post'}
 					headStyle={{fontSize: '20px', fontWeight: 600}}
 				>
 					<CreatePostForm setIsFetching={setIsFetching} isFetching={isFetching}/>

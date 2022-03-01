@@ -14,20 +14,22 @@ export const Footer: FC<Props> = ({post}) => {
 	const history = useHistory()
 	const created = formatDistanceToNow(post.createdAt * 1000)
 
-	const onClick = () => {
-		history.push(`/user/${post.author.id}`)
+	const onClick = (url: string) => {
+		history.push(url)
 	}
 
 	return (
 		<div className={s.footer}>
 			<div className={s.author}>
-				<Button className={s.user} type='text' onClick={onClick}>
+				<Button className={s.user} type='text' onClick={onClick.bind(null, `/user/${post.author.id}`)}>
 					{post.author.username}
 				</Button>
 			</div>
 			<div>{created}</div>
-			<Button type='text' onClick={() => history.push(`/post/${post.id}`)}>
-				<span>{post && post.commentsNumber}</span>
+			<Button type='text' onClick={onClick.bind(null, `/post/${post.id}`)}>
+				<span>
+					{post && post.commentsNumber}
+				</span>
 				<CommentOutlined/>
 			</Button>
 		</div>

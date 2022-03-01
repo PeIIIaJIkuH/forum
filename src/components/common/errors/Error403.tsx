@@ -15,8 +15,8 @@ export const Error403: FC<Props> = observer(({text}) => {
 	const location = useLocation()
 
 	const onClick = async () => {
-		if (location.pathname === '/auth/signup' || location.pathname === '/admin' || location.pathname ===
-			'/moderator') {
+		if (location.pathname === '/auth/signup' || location.pathname === '/admin' ||
+			location.pathname === '/moderator') {
 			return
 		}
 		appState.setUrl(location.pathname)
@@ -27,10 +27,7 @@ export const Error403: FC<Props> = observer(({text}) => {
 			<Helmet>
 				<title>Error 403 | forume</title>
 			</Helmet>
-			<Result
-				status='403'
-				title='403'
-				subTitle={text || 'Sorry, you are not authorized to access this page.'}
+			<Result status='403' title='403' subTitle={text || 'Sorry, you are not authorized to access this page.'}
 				extra={
 					<>
 						<Link to='/'>

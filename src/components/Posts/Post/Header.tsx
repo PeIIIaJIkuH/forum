@@ -97,27 +97,27 @@ export const Header: FC<Props> = observer(({post}) => {
 				<>
 					<Button type='text' icon={<EditOutlined/>} onClick={onEdit}/>
 					<Button danger type='link' icon={<DeleteOutlined/>} loading={appState.isLoading}
-					        onClick={onDelete.bind(null, 'author')}
+						onClick={onDelete.bind(null, 'author')}
 					/>
 				</>
 			) : isModerator ? (
 				<>
 					<Button danger type='link' icon={<DeleteOutlined/>} loading={appState.isLoading}
-					        onClick={onDelete.bind(null, 'moderator')}
+						onClick={onDelete.bind(null, 'moderator')}
 					/>
 					{moderatorState.reportIds.has(post.id) ? (
 						<Button type='link' icon={<IssuesCloseOutlined/>} loading={appState.isLoading}
-						        onClick={onDeleteReport}
+							onClick={onDeleteReport}
 						/>
 					) : (
 						<Button danger type='link' icon={<ExclamationCircleOutlined/>} loading={appState.isLoading}
-						        onClick={onCreateReport}
+							onClick={onCreateReport}
 						/>
 					)}
 				</>
 			) : isAdmin ? (
 				<Button danger type='link' icon={<DeleteOutlined/>} loading={appState.isLoading}
-				        onClick={onDelete.bind(null, 'admin')}
+					onClick={onDelete.bind(null, 'admin')}
 				/>
 			) : null}
 		</div>
@@ -131,7 +131,7 @@ export const Header: FC<Props> = observer(({post}) => {
 			{(isAuthor || isAdmin || isModerator) && (
 				<div className={s.more}>
 					<Popover trigger='click' placement='left' visible={visible} onVisibleChange={handleVisibleChange}
-					         content={content}
+						content={content}
 					>
 						<Button type='text' icon={<MoreOutlined/>}/>
 					</Popover>

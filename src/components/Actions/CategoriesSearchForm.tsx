@@ -14,12 +14,6 @@ const layout = {
 	},
 }
 
-const tailLayout = {
-	wrapperCol: {
-		span: 24,
-	},
-}
-
 type Props = {
 	isFetching: boolean
 	onSubmit: (obj: { categories: string[] }) => Promise<void>
@@ -42,7 +36,7 @@ export const CategoriesSearchForm: FC<Props> = observer(({onSubmit, form, isFetc
 					))}
 				</Select>
 			</Form.Item>
-			<Form.Item {...tailLayout} className={s.btnWrapper}>
+			<Form.Item {...layout} className={s.btnWrapper}>
 				<Button type='default' htmlType='submit' icon={<FilterOutlined/>} loading={isFetching}>
 					Filter
 				</Button>

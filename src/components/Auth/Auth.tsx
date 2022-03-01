@@ -78,12 +78,7 @@ export const Auth: FC<Props> = observer(({register}) => {
 			</Helmet>
 			<div className={s.wrapper}>
 				<Card className={s.card} title={title} extra={extra}>
-					<AuthForm
-						onsubmit={onSubmit}
-						register={register}
-						form={form}
-						isFetching={isFetching}
-						type={type}
+					<AuthForm onsubmit={onSubmit} register={register} form={form} isFetching={isFetching} type={type}
 						setType={setType}
 					/>
 				</Card>

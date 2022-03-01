@@ -44,8 +44,8 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 
 	type obj = { title: string; content: string; categories: string[] }
 	const onSubmit = async ({title, content, categories}: obj) => {
-		let imagePath = postsState.editing?.imagePath,
-			isImage = postsState.editing?.isImage
+		let imagePath = postsState.editing?.imagePath
+		let isImage = postsState.editing?.isImage
 		if (postsState.editing && imageState && isImage) {
 			await postsAPI.deleteImage(postsState.editing.id)
 			imagePath = ''
@@ -62,11 +62,7 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 		}
 		setIsFetching(true)
 		title = title.trim()
-		content = content
-			?.replace(/\n+/, '\n')
-			.split('\n')
-			.map((line) => line.trim())
-			.join('\n')
+		content = content?.replace(/\n+/, '\n').split('\n').map((line) => line.trim()).join('\n')
 		categories = categories.map((tag) => tag.trim())
 		if (!postsState.editing) {
 			const {status} = await postsAPI.createPost(title, content, categories, isImage || false, imagePath || '')
@@ -77,14 +73,8 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 				message.error(`can not ${!postsState.editing ? 'create' : 'edit'} post`)
 			}
 		} else {
-			await postsAPI.editPost(
-				postsState.editing.id,
-				postsState.editing.author.id,
-				title,
-				content,
-				categories,
-				isImage,
-				imagePath,
+			await postsAPI.editPost(postsState.editing.id, postsState.editing.author.id, title, content, categories,
+				isImage, imagePath,
 			)
 			await setIsFetching(false)
 			history.push('/')
@@ -95,44 +85,31 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 		history.goBack()
 	}
 
-	const defaultFileList = [
-		{
-			uid: '1',
-			name: postsState.editing?.imagePath.split('images/')[1],
-			status: 'done',
-			url: `https://${postsState.editing?.imagePath}`,
-		},
-	]
+	const defaultFileList = [{
+		uid: '1',
+		name: postsState.editing?.imagePath.split('images/')[1],
+		status: 'done',
+		url: `https://${postsState.editing?.imagePath}`,
+	}]
 
 	return (
 		<Form className={s.form} {...layout} name='createPost' onFinish={onSubmit}>
-			<Form.Item
-				label='Title'
-				name='title'
-				rules={[defaultValidator('Title')]}
+			<Form.Item label='Title' name='title' rules={[defaultValidator('Title')]}
 				initialValue={postsState.editing?.title}
 			>
 				<Input autoFocus/>
 			</Form.Item>
-			<Form.Item
-				label='Content'
-				name='content'
-				initialValue={postsState.editing?.content}
+			<Form.Item label='Content' name='content' initialValue={postsState.editing?.content}
 				rules={!formData ? [defaultValidator('Content')] : undefined}
 			>
 				<TextArea allowClear autoSize={{minRows: 3, maxRows: 10}} showCount/>
 			</Form.Item>
 			<Form.Item label='Image' name='image'>
-				<ImageUpload
-					defaultFileList={postsState.editing?.isImage && defaultFileList}
-					setFormData={setFormData}
+				<ImageUpload defaultFileList={postsState.editing?.isImage && defaultFileList} setFormData={setFormData}
 					setImageState={setImageState}
 				/>
 			</Form.Item>
-			<Form.Item
-				label='Categories'
-				name='categories'
-				rules={[defaultValidator('Categories')]}
+			<Form.Item label='Categories' name='categories' rules={[defaultValidator('Categories')]}
 				initialValue={postsState.editing?.categories.map((category) => category.name)}
 			>
 				<Select mode='tags' allowClear>
@@ -147,12 +124,8 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 				<Button type='primary' danger onClick={onCancel} icon={<StopOutlined/>}>
 					Cancel
 				</Button>
-				<Button
-					className={s.create}
-					type='primary'
-					htmlType='submit'
+				<Button className={s.create} type='primary' htmlType='submit' loading={isFetching}
 					icon={postsState.editing ? <SaveOutlined/> : <CloudUploadOutlined/>}
-					loading={isFetching}
 				>
 					{postsState.editing ? 'Save' : 'Create'}
 				</Button>

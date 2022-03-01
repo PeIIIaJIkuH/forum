@@ -76,12 +76,9 @@ export const defaultValidator = (field: string, isSignup?: boolean) => ({
 		}),
 })
 
-export const categoriesQuery = (array: string | string[]) =>
-	queryString.stringify(
-		{categories: array},
-		{
-			arrayFormat: 'comma',
-			skipEmptyString: true,
-			skipNull: true,
-		},
-	)
+export const categoriesQuery = (array: string | string[]) => queryString.stringify({categories: array}, {
+		arrayFormat: 'comma',
+		skipEmptyString: true,
+		skipNull: true,
+	},
+)

@@ -13,11 +13,8 @@ type Props = {
 	props?: any
 }
 
-export const MenuItem: FC<Props> = ({
-	                                    key, icon,
-	                                    forAll, isAuth, title,
-	                                    available, ...props
-                                    }) => (
-	<Menu.Item className={s.menuItem} key={key} icon={icon} disabled={!(isAuth || forAll) || !available} {...props}>
+export const MenuItem: FC<Props> = ({key, icon, forAll, isAuth, title, available, ...rest}) => (
+	<Menu.Item className={s.menuItem} key={key} icon={icon} disabled={!(isAuth || forAll) || !available} {...rest}>
 		{title}
-	</Menu.Item>)
+	</Menu.Item>
+)

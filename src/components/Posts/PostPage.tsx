@@ -48,7 +48,9 @@ export const PostPage: FC = observer(() => {
 
 	return postsState.posts && (
 		<>
-			<Helmet><title>Comments | forume</title></Helmet>
+			<Helmet>
+				<title>Comments | forume</title>
+			</Helmet>
 			<Posts postPage type='post-page' postId={+urlId}/>
 			<section className={s.comments}>
 				<Card className={s.commentsCard}>

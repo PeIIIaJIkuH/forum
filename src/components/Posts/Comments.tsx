@@ -46,7 +46,7 @@ export const Comments: FC<Props> = observer(({comments, userPage}) => {
 	const renderItem = ({author, content, isAuthor, comment, datetime, isAdmin}: obj) => (
 		<li>
 			<Comment content={content} datetime={datetime} comment={comment} isAuthor={isAuthor} userPage={userPage}
-			         isAdmin={isAdmin} author={(
+				isAdmin={isAdmin} author={(
 				<Link to={`/user/${author.id}`}>
 					{author.username}
 				</Link>
@@ -57,7 +57,7 @@ export const Comments: FC<Props> = observer(({comments, userPage}) => {
 
 	return (
 		<List header={!userPage ? header : null} dataSource={data} renderItem={renderItem}
-		      locale={{emptyText: 'No Comments'}}
+			locale={{emptyText: 'No Comments'}}
 		/>
 	)
 })

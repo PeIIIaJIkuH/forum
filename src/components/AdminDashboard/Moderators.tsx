@@ -31,13 +31,8 @@ export const Moderators: FC = observer(() => {
 				<div key={id} className={s.card}>
 					<Link to={`/user/${id}`}>{username}</Link>
 					<div>
-						<Button
-							icon={<DeleteOutlined/>}
-							danger
-							className={s.close}
-							type='link'
-							onClick={onDelete.bind(null, id)}
-							loading={appState.isLoading}
+						<Button icon={<DeleteOutlined/>} danger className={s.close} type='link'
+							onClick={onDelete.bind(null, id)} loading={appState.isLoading}
 						/>
 					</div>
 				</div>

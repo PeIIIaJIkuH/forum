@@ -72,22 +72,15 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 
 	return (
 		<Form name='auth' onFinish={onsubmit} form={form}>
-			<Form.Item
-				name='username'
-				rules={[defaultValidator('Username', register)]}
-				colon={false}
+			<Form.Item name='username' rules={[defaultValidator('Username', register)]} colon={false}
 				label={register && usernameInfo}
 			>
 				<Input prefix={<UserOutlined/>} placeholder='Username' autoFocus/>
 			</Form.Item>
 			{register && (
-				<Form.Item
-					name='email'
-					label={emailInfo}
-					colon={false}
+				<Form.Item name='email' label={emailInfo} colon={false}
 					rules={[
-						defaultValidator('E-mail', true),
-						{
+						defaultValidator('E-mail', true), {
 							type: 'email',
 							message: 'The input is not valid E-mail!',
 						},
@@ -96,10 +89,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 					<Input prefix='@' placeholder='E-mail'/>
 				</Form.Item>
 			)}
-			<Form.Item
-				name='password'
-				rules={[defaultValidator('Password', register)]}
-				colon={false}
+			<Form.Item name='password' rules={[defaultValidator('Password', register)]} colon={false}
 				label={register && passwordInfo}
 			>
 				<Input.Password prefix={<LockOutlined/>} placeholder='Password'/>
@@ -118,10 +108,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 				</RadioGroup>
 			)}
 			{register && type === 'admin' && (
-				<Form.Item
-					name='adminToken'
-					colon={false}
-					label={register && adminTokenInfo}
+				<Form.Item name='adminToken' colon={false} label={register && adminTokenInfo}
 					rules={[defaultValidator('AdminToken', register)]}
 				>
 					<Input placeholder='Admin token'/>

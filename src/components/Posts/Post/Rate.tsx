@@ -48,13 +48,13 @@ export const Rate: FC<Props> = observer(({post}) => {
 	return (
 		<div className={s.rating}>
 			<Button className={cx(s.up, isRatedUp && s.ratedUp)} icon={<UpOutlined/>} ref={upRef}
-			        disabled={!authState.user?.id} onClick={onUpClick} loading={appState.isLoading}
+				disabled={!authState.user?.id} onClick={onUpClick} loading={appState.isLoading}
 			/>
 			<div className={s.ratingNumber}>
 				{post.postRating}
 			</div>
 			<Button className={cx(s.down, isRatedDown && s.ratedDown)} icon={<DownOutlined/>} ref={downRef}
-			        disabled={!authState.user?.id} onClick={onDownClick} loading={appState.isLoading}
+				disabled={!authState.user?.id} onClick={onDownClick} loading={appState.isLoading}
 			/>
 		</div>
 	)

@@ -34,7 +34,9 @@ export const ModeratorDashboard: FC = observer(() => {
 
 	return (
 		<>
-			<Helmet><title>Moderator Dashboard | forume</title></Helmet>
+			<Helmet>
+				<title>Moderator Dashboard | forume</title>
+			</Helmet>
 			<h2>Reports</h2>
 			{moderatorState.reports.length ? (
 				<div className={s.grid}>
@@ -45,7 +47,7 @@ export const ModeratorDashboard: FC = observer(() => {
 							</Link>
 							<div>
 								<Button icon={<DeleteOutlined/>} danger className={s.close} type='link'
-								        onClick={onDelete.bind(null, id)} loading={appState.isLoading}
+									onClick={onDelete.bind(null, id)} loading={appState.isLoading}
 								/>
 							</div>
 						</div>

@@ -30,13 +30,11 @@ import {useMediaQuery} from 'react-responsive'
 
 // FEATURES:
 // Load posts, comments, ratings, notifications
-// Create/edit/delete post/comment/notification
-// Rate post, comment
+// (Create/edit/delete/rate) (post/comment/notification)
 // Change posts type: all, my, upvoted, downvoted, by-categories, on user page: created, upvoted, downvoted, commented
 
 // TODO:
 // check all the features and functions
-// make all requests for several items paginated: take only some portion of it, and just scroll to request more
 
 export const App: FC = observer(() => {
 	const location = useLocation()

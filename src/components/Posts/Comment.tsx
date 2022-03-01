@@ -25,11 +25,7 @@ type Props = {
 	userPage?: boolean
 }
 
-export const Comment: FC<Props> = observer(({
-	                                            author, content,
-	                                            datetime, comment,
-	                                            isAuthor, userPage, isAdmin,
-                                            }) => {
+export const Comment: FC<Props> = observer(({author, content, datetime, comment, isAuthor, userPage, isAdmin}) => {
 	const [isEdit, setIsEdit] = useState(false)
 	const [text, setText] = useState(content)
 	const [visible, setVisible] = useState(false)
@@ -74,17 +70,16 @@ export const Comment: FC<Props> = observer(({
 
 	const editIcon = <EditOutlined className={s.icon}/>
 	const saveIcon = <SaveOutlined className={s.icon}/>
-	const editBtn =
+	const editBtn = (
 		<Button type='text' icon={!isEdit ? editIcon : saveIcon} onClick={onEdit} loading={appState.isLoading}/>
+	)
 	const deleteBtn = (
 		<Button danger type='text' icon={<DeleteOutlined className={s.icon}/>} onClick={onDelete}
-		        loading={appState.isLoading}
+			loading={appState.isLoading}
 		/>
 	)
 	const cContent = !isEdit ? paragraphs : (
-		<TextArea autoSize={{minRows: 1, maxRows: 5}} defaultValue={content} onChange={onChange} allowClear
-		          autoFocus
-		/>
+		<TextArea autoSize={{minRows: 1, maxRows: 5}} defaultValue={content} onChange={onChange} allowClear autoFocus/>
 	)
 
 	const handleVisibleChange = (visible: boolean) => {
@@ -122,13 +117,12 @@ export const Comment: FC<Props> = observer(({
 
 	const upBtn = (
 		<Button className={cx(s.commentUp, isRatedUp && s.commentRatedUp)} icon={<UpOutlined/>} ref={upRef}
-		        disabled={!authState.user?.id} onClick={onUpClick} loading={appState.isLoading} type='text' size='small'
+			disabled={!authState.user?.id} onClick={onUpClick} loading={appState.isLoading} type='text' size='small'
 		/>
 	)
 	const downBtn = (
-		<Button className={cx(s.downComment, isRatedDown && s.commentRatedDown)} icon={<DownOutlined/>}
-		        disabled={!authState.user?.id} onClick={onDownClick} loading={appState.isLoading} type='text' size='small'
-		        ref={downRef}
+		<Button className={cx(s.downComment, isRatedDown && s.commentRatedDown)} icon={<DownOutlined/>} ref={downRef}
+			disabled={!authState.user?.id} onClick={onDownClick} loading={appState.isLoading} type='text' size='small'
 		/>
 	)
 	const rating = <div>{comment.commentRating}</div>
@@ -146,16 +140,16 @@ export const Comment: FC<Props> = observer(({
 			{author}
 			{(isAuthor || isAdmin) && (
 				<Popover trigger='click' placement='top' visible={visible} onVisibleChange={handleVisibleChange}
-				         content={(
-					         <div className='actions'>
-						         {isAuthor ? (
-							         <>
-								         {editBtn}
-								         {deleteBtn}
-							         </>
-						         ) : (isAdmin && deleteBtn)}
-					         </div>
-				         )}
+					content={(
+						<div className='actions'>
+							{isAuthor ? (
+								<>
+									{editBtn}
+									{deleteBtn}
+								</>
+							) : (isAdmin && deleteBtn)}
+						</div>
+					)}
 				>
 					<Button type='text' icon={<MoreOutlined/>} size='small'/>
 				</Popover>
@@ -166,7 +160,7 @@ export const Comment: FC<Props> = observer(({
 	return (
 		<div ref={ref}>
 			<AntComment author={updatedAuthor} content={cContent} datetime={datetime} actions={[upBtn, rating, downBtn]}
-			            key={comment.id}
+				key={comment.id}
 			/>
 		</div>
 	)
