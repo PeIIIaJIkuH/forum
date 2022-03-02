@@ -2,6 +2,7 @@ import {makeAutoObservable} from 'mobx'
 import {adminAPI} from '../api/admin'
 import authState from './authState'
 import {EUserRole, ICategory, IPostReport, IRoleRequest, IUser} from '../types'
+import appState from './appState'
 
 class AdminState {
 	requests: IRoleRequest[]
@@ -37,7 +38,9 @@ class AdminState {
 		if (!authState.user || authState.role !== EUserRole.admin) {
 			return
 		}
+		appState.setIsLoading(true)
 		const {data, status} = await adminAPI.fetchModeratorRequests()
+		appState.setIsLoading(false)
 		if (status) {
 			this.setRequests(data)
 		}
@@ -47,7 +50,9 @@ class AdminState {
 		if (!authState.user || authState.role !== EUserRole.admin) {
 			return
 		}
+		appState.setIsLoading(true)
 		const {data, status} = await adminAPI.fetchPostReports()
+		appState.setIsLoading(false)
 		if (status) {
 			this.setReports(data)
 		}
@@ -57,7 +62,9 @@ class AdminState {
 		if (!authState.user || authState.role !== EUserRole.admin) {
 			return
 		}
+		appState.setIsLoading(true)
 		const {data, status} = await adminAPI.fetchModerators()
+		appState.setIsLoading(false)
 		if (status) {
 			this.setModerators(data)
 		}
@@ -67,14 +74,12 @@ class AdminState {
 		if (!authState.user || authState.role !== EUserRole.admin) {
 			return
 		}
+		appState.setIsLoading(true)
 		const {data, status} = await adminAPI.fetchCategories()
+		appState.setIsLoading(false)
 		if (status) {
 			this.setCategories(data)
 		}
-	}
-
-	async fetchAll() {
-		await Promise.all([this.fetchRequests(), this.fetchReports(), this.fetchModerators(), this.fetchCategories()])
 	}
 }
 

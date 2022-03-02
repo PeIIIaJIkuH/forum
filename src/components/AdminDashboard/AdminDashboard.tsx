@@ -32,8 +32,16 @@ export const AdminDashboard: FC = observer(() => {
 	}
 
 	useEffect(() => {
-		adminState.fetchAll().then()
-	}, [])
+		if (parsed.type === 'requests') {
+			adminState.fetchRequests().then()
+		} else if (parsed.type === 'reports') {
+			adminState.fetchReports().then()
+		} else if (parsed.type === 'moderators') {
+			adminState.fetchModerators().then()
+		} else if (parsed.type === 'categories') {
+			adminState.fetchCategories().then()
+		}
+	}, [parsed.type])
 
 	if (!authState.user || authState.role !== EUserRole.admin) {
 		return <Error403/>
