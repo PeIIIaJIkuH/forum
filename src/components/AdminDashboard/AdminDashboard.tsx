@@ -28,9 +28,7 @@ export const AdminDashboard: FC = observer(() => {
 	)
 
 	const onChange = (key: string) => {
-		history.push({
-			search: queryString.stringify({type: key}),
-		})
+		history.push({search: queryString.stringify({type: key})})
 	}
 
 	useEffect(() => {
