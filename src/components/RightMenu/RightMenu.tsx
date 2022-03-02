@@ -10,7 +10,6 @@ export const RightMenu: FC = observer(() => {
 	return (
 		<div className={cx(s.wrapper, appState.isMenuOpen && s.open)}>
 			<LeftMenu mobile/>
-
 			<Layout.Footer className={s.footer}>
 				<div>by PeIIIaJIkuH and indecember</div>
 				<div>GO, React, SQLite3</div>
