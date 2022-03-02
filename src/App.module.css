@@ -28,16 +28,16 @@
 
 .affix {
 	min-width: 50px;
+	height: fit-content;
 }
 
-.menu {
+.tabs {
 	margin-left: 15px;
 	height: fit-content;
 }
 
 .actions {
 	margin-right: 15px;
-	height: fit-content;
 }
 
 .sider {

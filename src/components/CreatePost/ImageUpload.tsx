@@ -13,7 +13,6 @@ export const ImageUpload: FC<Props> = observer(({defaultFileList, setFormData, s
 	const [fileList, setFileList] = useState<any[]>([])
 
 	const beforeUpload = ({size, type}: any) => {
-		console.log(type)
 		if (type.split('/')[0] !== 'image') {
 			message.error('you can upload only image').then()
 			return false
@@ -26,7 +25,6 @@ export const ImageUpload: FC<Props> = observer(({defaultFileList, setFormData, s
 	}
 
 	const customRequest = async ({file, onSuccess}: any) => {
-		console.log(file)
 		const formData = new FormData()
 		formData.append('image', file)
 		setFileList([file])

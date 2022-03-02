@@ -66,7 +66,7 @@ export const App: FC = observer(() => {
 				<Header/>
 				<Layout className={s.innerLayout}>
 					{!isTabletOrMobile && (
-						<Affix offsetTop={105} className={cx(s.affix, s.menu)}>
+						<Affix offsetTop={105} className={cx(s.affix)}>
 							<Sider theme='light' trigger={null} className={s.sider}>
 								<LeftMenu/>
 							</Sider>

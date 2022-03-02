@@ -9,7 +9,6 @@ type Props = {
 	isAuth?: boolean
 	title: string
 	available?: boolean
-	props?: any
 }
 
 export const MenuItem: FC<Props> = ({key, icon, forAll, isAuth, title, available, ...rest}) => (

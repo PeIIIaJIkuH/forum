@@ -28,7 +28,6 @@ class ModeratorState {
 		appState.setIsLoading(false)
 		if (status) {
 			this.setReports(data)
-			console.log('reports', data)
 		}
 	}
 }

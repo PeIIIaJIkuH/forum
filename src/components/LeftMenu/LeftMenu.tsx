@@ -2,7 +2,7 @@ import {DislikeOutlined, FormOutlined, HomeOutlined, LikeOutlined, TagsOutlined,
 import {FC, useState} from 'react'
 import {useHistory, useLocation} from 'react-router-dom'
 import {CategoriesModal} from './CategoriesModal'
-import {MenuItem} from './MenuItem'
+import {MenuItem} from '../MenuItem/MenuItem'
 import authState from '../../store/authState'
 import {observer} from 'mobx-react-lite'
 import {Menu} from 'antd'
