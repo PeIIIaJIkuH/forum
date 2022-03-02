@@ -45,7 +45,6 @@ class PostsState {
 	}
 
 	async fetchAllPosts() {
-		this.setAllPosts(null)
 		appState.setIsLoading(true)
 		const {data, status} = await postsAPI.fetchAllPosts()
 		appState.setIsLoading(false)

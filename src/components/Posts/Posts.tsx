@@ -82,21 +82,23 @@ export const Posts: FC<Props> = observer(({type, userComments, postId}) => {
 					</section>
 				</>
 			)}
-			<section className='posts'>
-				{postsState.posts?.length ?
-					postsState.posts.map((post: IPost) => (
-						<Post post={post} key={post.id} comments={userComments ? userComments[post.id] : undefined}/>
-					)) : (
-						<Spin tip='Loading...' spinning={appState.isLoading}
-							indicator={<LoadingOutlined className={s.spinnerIcon}/>}
-						>
+			<Spin spinning={appState.isLoading}
+				indicator={<LoadingOutlined className={s.spinnerIcon}/>}
+			>
+				<section className='posts'>
+					{postsState.posts?.length ?
+						postsState.posts.map((post: IPost) => (
+							<Post post={post} key={post.id}
+								comments={userComments ? userComments[post.id] : undefined}
+							/>
+						)) : (
 							<Card>
 								<Empty className={s.empty} description='No Posts'/>
 							</Card>
-						</Spin>
-					)
-				}
-			</section>
+						)
+					}
+				</section>
+			</Spin>
 		</>
 	)
 })

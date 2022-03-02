@@ -5,7 +5,6 @@ import {CategoriesModal} from './CategoriesModal'
 import {MenuItem} from './MenuItem'
 import authState from '../../store/authState'
 import {observer} from 'mobx-react-lite'
-import postsState from '../../store/postsState'
 import {Menu} from 'antd'
 
 type Props = {
@@ -18,15 +17,9 @@ export const LeftMenu: FC<Props> = observer(({mobile}) => {
 	const path = location.pathname.split('/')[1] || 'home'
 	const [modalVisible, setModalVisible] = useState(false)
 	const defaultKeys = ['home']
-	const [prevKey, setPrevKey] = useState(path)
 
 	const onClick = ({key}: any) => {
-		if (key == prevKey) {
-			return
-		}
-		setPrevKey(key)
 		if (key !== 'by-categories') {
-			postsState.setAllPosts([])
 			history.push(`/${key === 'home' ? '' : key}`)
 		} else {
 			setModalVisible(true)

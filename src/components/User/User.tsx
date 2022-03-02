@@ -9,15 +9,27 @@ import commentsState from '../../store/commentsState'
 import {observer} from 'mobx-react-lite'
 import postsState from '../../store/postsState'
 import s from './User.module.css'
-import {useRouteMatch} from 'react-router-dom'
+import {useHistory, useRouteMatch} from 'react-router-dom'
 import userState from '../../store/userState'
 import {Menu} from 'antd'
+import queryString from 'query-string'
 
 export const User: FC = observer(() => {
 	const match = useRouteMatch<{ id: string }>()
 	const urlId = match.params.id
 	const [check, setCheck] = useState(true)
 	const title = userState.user?.username || 'User Page'
+	const parsed = queryString.parse(location.search)
+	const history = useHistory()
+
+	const getCorrectType = (type: string | string[] | null): string => {
+		if (type === 'created' || type === 'up-voted' || type === 'down-voted' || type === 'commented') {
+			return type
+		}
+		return 'created'
+	}
+
+	const [prevKey, setPrevKey] = useState(getCorrectType(parsed.type))
 
 	useEffect(() => {
 		const f = async () => {
@@ -34,15 +46,20 @@ export const User: FC = observer(() => {
 		return <Error404/>
 	}
 
-	const onClick = ({key}: any) => {
+	const onClick = async ({key}: any) => {
+		if (key === prevKey) {
+			return
+		}
+		setPrevKey(key)
+		history.push({search: queryString.stringify({type: key})})
 		if (key === 'created') {
-			postsState.fetchUserPosts(+urlId).then()
+			await postsState.fetchUserPosts(+urlId)
 		} else if (key === 'up-voted') {
-			postsState.fetchRatedPosts(+urlId, true).then()
+			await postsState.fetchRatedPosts(+urlId, true)
 		} else if (key === 'down-voted') {
-			postsState.fetchRatedPosts(+urlId, false).then()
+			await postsState.fetchRatedPosts(+urlId, false)
 		} else {
-			postsState.fetchCommentedPosts(+urlId).then()
+			await postsState.fetchCommentedPosts(+urlId)
 		}
 	}
 
@@ -53,7 +70,9 @@ export const User: FC = observer(() => {
 					<title>{title} | forume</title>
 				</Helmet>
 				<UserInfo/>
-				<Menu className={s.menu} mode='horizontal' defaultSelectedKeys={['created']} onClick={onClick}>
+				<Menu className={s.menu} mode='horizontal' defaultSelectedKeys={[getCorrectType(parsed.type)]}
+					onClick={onClick}
+				>
 					<MenuItem key='created' title='Created' icon={<UserOutlined/>} forAll available/>
 					<MenuItem key='up-voted' title='Upvoted' icon={<LikeOutlined/>} forAll available/>
 					<MenuItem key='down-voted' title='Downvoted' icon={<DislikeOutlined/>} forAll available/>
