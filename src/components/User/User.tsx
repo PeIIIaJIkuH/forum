@@ -1,18 +1,16 @@
-import {CommentOutlined, DislikeOutlined, LikeOutlined, UserOutlined} from '@ant-design/icons'
 import {FC, useEffect, useState} from 'react'
 import {Error404} from '../common/errors/Error404'
 import {Helmet} from 'react-helmet'
-import {MenuItem} from '../LeftMenu/MenuItem'
-import {Posts} from '../Posts/Posts'
 import {UserInfo} from './UserInfo'
-import commentsState from '../../store/commentsState'
 import {observer} from 'mobx-react-lite'
 import postsState from '../../store/postsState'
 import s from './User.module.css'
 import {useHistory, useRouteMatch} from 'react-router-dom'
 import userState from '../../store/userState'
-import {Menu} from 'antd'
 import queryString from 'query-string'
+import {Tabs} from 'antd'
+import {Posts} from '../Posts/Posts'
+import commentsState from '../../store/commentsState'
 
 export const User: FC = observer(() => {
 	const match = useRouteMatch<{ id: string }>()
@@ -21,15 +19,6 @@ export const User: FC = observer(() => {
 	const title = userState.user?.username || 'User Page'
 	const parsed = queryString.parse(location.search)
 	const history = useHistory()
-
-	const getCorrectType = (type: string | string[] | null): string => {
-		if (type === 'created' || type === 'up-voted' || type === 'down-voted' || type === 'commented') {
-			return type
-		}
-		return 'created'
-	}
-
-	const [prevKey, setPrevKey] = useState(getCorrectType(parsed.type))
 
 	useEffect(() => {
 		const f = async () => {
@@ -42,25 +31,37 @@ export const User: FC = observer(() => {
 		f().then()
 	}, [urlId])
 
+	useEffect(() => {
+		if (parsed.type === 'created') {
+			postsState.fetchUserPosts(+urlId).then()
+		} else if (parsed.type === 'up-voted') {
+			postsState.fetchRatedPosts(+urlId, true).then()
+		} else if (parsed.type === 'down-voted') {
+			postsState.fetchRatedPosts(+urlId, false).then()
+		} else if (parsed.type === 'commented') {
+			postsState.fetchCommentedPosts(+urlId).then()
+		}
+	}, [parsed.type])
+
 	if ((urlId !== undefined && isNaN(+urlId)) || !check) {
 		return <Error404/>
 	}
 
-	const onClick = async ({key}: any) => {
-		if (key === prevKey) {
-			return
+	const getCorrectType = (type: string | string[] | null): string => {
+		if (type === 'created' || type === 'up-voted' || type === 'down-voted' || type === 'commented') {
+			return type
 		}
-		setPrevKey(key)
+		return 'created'
+	}
+
+	const getTab = (name: string) => (
+		<div className={s.tab}>
+			{name}
+		</div>
+	)
+
+	const onChange = (key: string) => {
 		history.push({search: queryString.stringify({type: key})})
-		if (key === 'created') {
-			await postsState.fetchUserPosts(+urlId)
-		} else if (key === 'up-voted') {
-			await postsState.fetchRatedPosts(+urlId, true)
-		} else if (key === 'down-voted') {
-			await postsState.fetchRatedPosts(+urlId, false)
-		} else {
-			await postsState.fetchCommentedPosts(+urlId)
-		}
 	}
 
 	return (
@@ -70,15 +71,20 @@ export const User: FC = observer(() => {
 					<title>{title} | forume</title>
 				</Helmet>
 				<UserInfo/>
-				<Menu className={s.menu} mode='horizontal' defaultSelectedKeys={[getCorrectType(parsed.type)]}
-					onClick={onClick}
-				>
-					<MenuItem key='created' title='Created' icon={<UserOutlined/>} forAll available/>
-					<MenuItem key='up-voted' title='Upvoted' icon={<LikeOutlined/>} forAll available/>
-					<MenuItem key='down-voted' title='Downvoted' icon={<DislikeOutlined/>} forAll available/>
-					<MenuItem key='commented' title='Commented' icon={<CommentOutlined/>} forAll available/>
-				</Menu>
-				<Posts userComments={commentsState.userComments}/>
+				<Tabs centered className={s.tabs} onChange={onChange} defaultActiveKey={getCorrectType(parsed.type)}>
+					<Tabs.TabPane tab={getTab('Created')} key='created'>
+						<Posts userComments={commentsState.userComments}/>
+					</Tabs.TabPane>
+					<Tabs.TabPane tab={getTab('Upvoted')} key='up-voted'>
+						<Posts userComments={commentsState.userComments}/>
+					</Tabs.TabPane>
+					<Tabs.TabPane tab={getTab('Downvoted')} key='down-voted'>
+						<Posts userComments={commentsState.userComments}/>
+					</Tabs.TabPane>
+					<Tabs.TabPane tab={getTab('Commented')} key='commented'>
+						<Posts userComments={commentsState.userComments}/>
+					</Tabs.TabPane>
+				</Tabs>
 			</>
 		)
 	)
