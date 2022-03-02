@@ -82,9 +82,7 @@ export const Posts: FC<Props> = observer(({type, userComments, postId}) => {
 					</section>
 				</>
 			)}
-			<Spin spinning={appState.isLoading}
-				indicator={<LoadingOutlined className={s.spinnerIcon}/>}
-			>
+			<Spin spinning={appState.isLoading} indicator={<LoadingOutlined className={s.spinnerIcon}/>}>
 				<section className='posts'>
 					{postsState.posts?.length ?
 						postsState.posts.map((post: IPost) => (
