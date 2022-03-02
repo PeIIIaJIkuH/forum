@@ -1,7 +1,6 @@
 import {Dispatch, FC, SetStateAction} from 'react'
-
 import {CategoriesSearch} from '../Actions/CategoriesSearch'
-import Modal from 'antd/lib/modal/Modal'
+import {Modal} from 'antd'
 
 type Props = {
 	modalVisible: boolean

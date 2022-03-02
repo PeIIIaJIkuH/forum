@@ -1,19 +1,13 @@
 import {CloudUploadOutlined, SaveOutlined, StopOutlined} from '@ant-design/icons'
 import {FC, useEffect, useState} from 'react'
 import {useHistory, useLocation} from 'react-router-dom'
-
-import Button from 'antd/lib/button'
-import Form from 'antd/lib/form'
 import {ImageUpload} from './ImageUpload'
-import Input from 'antd/lib/input'
-import Select from 'antd/lib/select'
-import TextArea from 'antd/lib/input/TextArea'
 import {defaultValidator} from '../../utils/helpers'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import {postsAPI} from '../../api/posts'
 import postsState from '../../store/postsState'
 import s from './CreatePost.module.css'
+import {Button, Form, Input, message, Select} from 'antd'
 
 const layout = {
 	labelCol: {span: 4},
@@ -102,7 +96,7 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 			<Form.Item label='Content' name='content' initialValue={postsState.editing?.content}
 				rules={!formData ? [defaultValidator('Content')] : undefined}
 			>
-				<TextArea allowClear autoSize={{minRows: 3, maxRows: 10}} showCount/>
+				<Input.TextArea allowClear autoSize={{minRows: 3, maxRows: 10}} showCount/>
 			</Form.Item>
 			<Form.Item label='Image' name='image'>
 				<ImageUpload defaultFileList={postsState.editing?.isImage && defaultFileList} setFormData={setFormData}

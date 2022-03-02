@@ -1,16 +1,13 @@
-import Button from 'antd/lib/button'
-import Card from 'antd/lib/card'
 import {DeleteOutlined} from '@ant-design/icons'
-import Empty from 'antd/lib/empty'
 import {FC} from 'react'
 import {Link} from 'react-router-dom'
 import {adminAPI} from '../../api/admin'
 import adminState from '../../store/adminState'
 import appState from '../../store/appState'
 import {categoriesQuery} from '../../utils/helpers'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './AdminDashboard.module.css'
+import {Button, Card, Empty, message} from 'antd'
 
 export const Categories: FC = observer(() => {
 	const onDelete = async (id: number) => {

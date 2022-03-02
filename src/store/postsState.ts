@@ -96,6 +96,7 @@ class PostsState {
 	async fetchCommentedPosts(userId: number) {
 		appState.setIsLoading(true)
 		const {data, status} = await postsAPI.fetchCommentedPosts(userId)
+		console.log('posts', data)
 		appState.setIsLoading(false)
 		if (status) {
 			const commentsByPostId = groupBy('postId')(data)

@@ -1,15 +1,13 @@
 import {CloseOutlined, MenuOutlined} from '@ant-design/icons'
 import {FC, useState} from 'react'
-
-import Button from 'antd/lib/button'
 import {EUserRole} from '../../types'
 import {Notifications} from '../Notifications/Notifications'
-import Popover from 'antd/lib/popover'
 import appState from '../../store/appState'
 import authState from '../../store/authState'
 import {observer} from 'mobx-react-lite'
 import s from './Header.module.css'
 import {useHistory} from 'react-router-dom'
+import {Button, Popover} from 'antd'
 
 type Props = {
 	onSignOut: () => void

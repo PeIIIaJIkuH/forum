@@ -1,19 +1,14 @@
 import {ChangeEvent, FC, ReactNode, useRef, useState} from 'react'
 import {DeleteOutlined, DownOutlined, EditOutlined, MoreOutlined, SaveOutlined, UpOutlined} from '@ant-design/icons'
-
-import AntComment from 'antd/lib/comment'
-import Button from 'antd/lib/button'
 import {IComment} from '../../types'
-import Popover from 'antd/lib/popover'
-import TextArea from 'antd/lib/input/TextArea'
 import appState from '../../store/appState'
 import authState from '../../store/authState'
 import commentsState from '../../store/commentsState'
 import cx from 'classnames'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './Posts.module.css'
 import useOnClickOutside from '../../utils/useOnClickOutside'
+import {Button, Comment as AntComment, Input, message, Popover} from 'antd'
 
 type Props = {
 	author: ReactNode
@@ -79,7 +74,9 @@ export const Comment: FC<Props> = observer(({author, content, datetime, comment,
 		/>
 	)
 	const cContent = !isEdit ? paragraphs : (
-		<TextArea autoSize={{minRows: 1, maxRows: 5}} defaultValue={content} onChange={onChange} allowClear autoFocus/>
+		<Input.TextArea autoSize={{minRows: 1, maxRows: 5}} defaultValue={content} onChange={onChange} allowClear
+			autoFocus
+		/>
 	)
 
 	const handleVisibleChange = (visible: boolean) => {

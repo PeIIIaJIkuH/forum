@@ -1,13 +1,11 @@
-import Button from 'antd/lib/button'
-import Empty from 'antd/lib/empty'
 import {FC} from 'react'
 import appState from '../../store/appState'
 import {formatDistanceToNow} from 'date-fns'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './Notifications.module.css'
 import {userAPI} from '../../api/user'
 import userState from '../../store/userState'
+import {Button, Empty, message} from 'antd'
 
 export const RoleNotifications: FC = observer(() => {
 	const onDelete = async () => {

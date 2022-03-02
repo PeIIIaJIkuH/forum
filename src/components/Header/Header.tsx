@@ -1,21 +1,16 @@
 import {FC, useEffect} from 'react'
 import {Link, useLocation} from 'react-router-dom'
-
 import {Actions} from './Actions'
-import Affix from 'antd/lib/affix'
-import Button from 'antd/lib/button'
-import Image from 'antd/lib/image'
-import Layout from 'antd/lib/layout'
 import {MobileActions} from './MobileActions'
 import {ProgressBar} from '../ProgressBar/ProgressBar'
 import appState from '../../store/appState'
 import authState from '../../store/authState'
 import logo from '../../assets/img/logo.svg'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './Header.module.css'
 import {useMediaQuery} from 'react-responsive'
 import userState from '../../store/userState'
+import {Affix, Button, Image, Layout, message} from 'antd'
 
 export const Header: FC = observer(() => {
 	const location = useLocation()

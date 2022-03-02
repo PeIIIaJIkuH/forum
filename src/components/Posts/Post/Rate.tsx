@@ -1,15 +1,13 @@
 import {DownOutlined, UpOutlined} from '@ant-design/icons'
 import {FC, useRef} from 'react'
-
-import Button from 'antd/lib/button'
 import {IPost} from '../../../types'
 import appState from '../../../store/appState'
 import authState from '../../../store/authState'
 import cx from 'classnames'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import postsState from '../../../store/postsState'
 import s from '../Posts.module.css'
+import {Button, message} from 'antd'
 
 type Props = {
 	post: IPost

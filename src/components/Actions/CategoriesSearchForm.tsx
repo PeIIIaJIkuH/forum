@@ -1,12 +1,9 @@
 import {FC, useEffect} from 'react'
-import Form, {FormInstance} from 'antd/lib/form'
-
-import Button from 'antd/lib/button'
 import {FilterOutlined} from '@ant-design/icons'
-import Select from 'antd/lib/select'
 import {observer} from 'mobx-react-lite'
 import postsState from '../../store/postsState'
 import s from './Actions.module.css'
+import {Button, Form, FormInstance, Select} from 'antd'
 
 const layout = {
 	wrapperCol: {

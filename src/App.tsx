@@ -1,23 +1,18 @@
 import {FC, useEffect} from 'react'
 import {Route, Switch, useLocation} from 'react-router-dom'
-
 import {Actions} from './components/Actions/Actions'
 import {AdminDashboard} from './components/AdminDashboard/AdminDashboard'
-import Affix from 'antd/lib/affix'
 import {AppPreloader} from './components/common/preloaders/AppPreloader'
 import {Auth} from './components/Auth/Auth'
-import {Content} from 'antd/lib/layout/layout'
 import {CreatePost} from './components/CreatePost/CreatePost'
 import {EUserRole} from './types'
 import {Error404} from './components/common/errors/Error404'
 import {Header} from './components/Header/Header'
-import Layout from 'antd/lib/layout'
 import {LeftMenu} from './components/LeftMenu/LeftMenu'
 import {ModeratorDashboard} from './components/ModeratorDashboard/ModeratorDashboard'
 import {PostPage} from './components/Posts/PostPage'
 import {Posts} from './components/Posts/Posts'
 import {RightMenu} from './components/RightMenu/RightMenu'
-import Sider from 'antd/lib/layout/Sider'
 import {User} from './components/User/User'
 import appState from './store/appState'
 import authState from './store/authState'
@@ -27,6 +22,7 @@ import {observer} from 'mobx-react-lite'
 import s from './App.module.css'
 import {useCookies} from 'react-cookie'
 import {useMediaQuery} from 'react-responsive'
+import {Affix, Layout} from 'antd'
 
 // FEATURES:
 // Load posts, comments, ratings, notifications
@@ -35,6 +31,8 @@ import {useMediaQuery} from 'react-responsive'
 
 // TODO:
 // check all the features and functions
+
+const {Sider, Content} = Layout
 
 export const App: FC = observer(() => {
 	const location = useLocation()
@@ -124,7 +122,9 @@ export const App: FC = observer(() => {
 							</Sider>
 						</Affix>
 					)}
-					{isTabletOrMobile && <RightMenu/>}
+					{isTabletOrMobile && (
+						<RightMenu/>
+					)}
 				</Layout>
 			</Layout>
 		</div>

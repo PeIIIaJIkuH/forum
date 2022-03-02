@@ -1,13 +1,12 @@
-import Button from 'antd/lib/button'
 import {CategoriesSearch} from './CategoriesSearch'
 import {FC} from 'react'
-import Layout from 'antd/lib/layout'
 import {Link} from 'react-router-dom'
 import {PlusOutlined} from '@ant-design/icons'
 import authState from '../../store/authState'
 import {observer} from 'mobx-react-lite'
 import postsState from '../../store/postsState'
 import s from './Actions.module.css'
+import {Button, Layout} from 'antd'
 
 export const Actions: FC = observer(() => (
 	<div className='actions'>

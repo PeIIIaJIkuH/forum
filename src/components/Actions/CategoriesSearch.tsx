@@ -1,14 +1,11 @@
 import {FC, useState} from 'react'
-
-import Card from 'antd/lib/card'
 import {CategoriesSearchForm} from './CategoriesSearchForm'
 import appState from '../../store/appState'
 import {categoriesQuery} from '../../utils/helpers'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './Actions.module.css'
-import {useForm} from 'antd/lib/form/Form'
 import {useHistory} from 'react-router-dom'
+import {Card, Form, message} from 'antd'
 
 type Props = {
 	closeModal?: () => void
@@ -18,7 +15,7 @@ type Props = {
 export const CategoriesSearch: FC<Props> = observer(({closeModal, mobile}) => {
 	const history = useHistory()
 	const [isFetching, setIsFetching] = useState(false)
-	const [form] = useForm()
+	const [form] = Form.useForm()
 
 	type obj = { categories: string[] }
 	const onSubmit = async ({categories}: obj) => {

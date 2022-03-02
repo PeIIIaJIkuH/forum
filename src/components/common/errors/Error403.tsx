@@ -1,11 +1,9 @@
 import {Link, useLocation} from 'react-router-dom'
-
-import Button from 'antd/lib/button'
 import {FC} from 'react'
 import {Helmet} from 'react-helmet'
-import Result from 'antd/lib/result'
 import appState from '../../../store/appState'
 import {observer} from 'mobx-react-lite'
+import {Button, Result} from 'antd'
 
 type Props = {
 	text?: string

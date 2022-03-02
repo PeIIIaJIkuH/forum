@@ -1,19 +1,16 @@
-import Button from 'antd/lib/button'
-import Card from 'antd/lib/card'
 import {DeleteOutlined} from '@ant-design/icons'
 import {EUserRole} from '../../types'
-import Empty from 'antd/lib/empty'
 import {Error403} from '../common/errors/Error403'
 import {FC} from 'react'
 import {Helmet} from 'react-helmet'
 import {Link} from 'react-router-dom'
 import appState from '../../store/appState'
 import authState from '../../store/authState'
-import message from 'antd/lib/message'
 import {moderatorAPI} from '../../api/moderator'
 import moderatorState from '../../store/moderatorState'
 import {observer} from 'mobx-react-lite'
 import s from './ModeratorDashboard.module.css'
+import {Button, Card, Empty, message} from 'antd'
 
 export const ModeratorDashboard: FC = observer(() => {
 	if (!authState.user || authState.role !== EUserRole.moderator) {

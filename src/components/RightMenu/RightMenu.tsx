@@ -1,10 +1,10 @@
 import {FC} from 'react'
-import Layout from 'antd/lib/layout'
 import {LeftMenu} from '../LeftMenu/LeftMenu'
 import appState from '../../store/appState'
 import cx from 'classnames'
 import {observer} from 'mobx-react-lite'
 import s from './RightMenu.module.css'
+import {Layout} from 'antd'
 
 export const RightMenu: FC = observer(() => {
 	return (

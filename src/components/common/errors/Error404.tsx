@@ -1,8 +1,7 @@
-import Button from 'antd/lib/button'
 import {FC} from 'react'
 import {Helmet} from 'react-helmet'
 import {Link} from 'react-router-dom'
-import Result from 'antd/lib/result'
+import {Button, Result} from 'antd'
 
 type Props = {
 	text?: string

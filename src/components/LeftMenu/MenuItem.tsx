@@ -1,7 +1,6 @@
 import {FC, ReactNode} from 'react'
-
-import Menu from 'antd/lib/menu'
 import s from '../User/User.module.css'
+import {Menu} from 'antd'
 
 type Props = {
 	key: string

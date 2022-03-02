@@ -1,16 +1,12 @@
 import {CheckOutlined, CloseOutlined} from '@ant-design/icons'
-
-import Button from 'antd/lib/button'
-import Card from 'antd/lib/card'
-import Empty from 'antd/lib/empty'
 import {FC} from 'react'
 import {Link} from 'react-router-dom'
 import {adminAPI} from '../../api/admin'
 import adminState from '../../store/adminState'
 import appState from '../../store/appState'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './AdminDashboard.module.css'
+import {Button, Card, Empty, message} from 'antd'
 
 export const Reports: FC = observer(() => {
 	const onAccept = async (id: number) => {

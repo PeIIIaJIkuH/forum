@@ -1,9 +1,7 @@
 import {FC, useState} from 'react'
-import Upload, {RcFile} from 'antd/lib/upload'
-
 import {InboxOutlined} from '@ant-design/icons'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
+import {message, Upload} from 'antd'
 
 type Props = {
 	defaultFileList: any
@@ -12,11 +10,12 @@ type Props = {
 }
 
 export const ImageUpload: FC<Props> = observer(({defaultFileList, setFormData, setImageState}) => {
-	const [fileList] = useState([])
+	const [fileList, setFileList] = useState<any[]>([])
 
-	const beforeUpload = ({size, type}: RcFile) => {
-		if (type !== 'png' && type !== 'jpg' && type !== 'jpeg' && type !== '.gif' && type !== '.svg') {
-			message.error('you can upload only .png, .jpg, .jpeg, .gif, .svg filetypes').then()
+	const beforeUpload = ({size, type}: any) => {
+		console.log(type)
+		if (type.split('/')[0] !== 'image') {
+			message.error('you can upload only image').then()
 			return false
 		}
 		if (size / 1024 / 1024 >= 20) {
@@ -27,14 +26,18 @@ export const ImageUpload: FC<Props> = observer(({defaultFileList, setFormData, s
 	}
 
 	const customRequest = async ({file, onSuccess}: any) => {
+		console.log(file)
 		const formData = new FormData()
 		formData.append('image', file)
+		setFileList([file])
 		setFormData(formData)
 		setImageState(1)
 		onSuccess()
+		// TODO: make image thumbnail
 	}
 
 	const onRemove = () => {
+		setFileList([])
 		setFormData(null)
 		setImageState(-1)
 	}
@@ -42,7 +45,6 @@ export const ImageUpload: FC<Props> = observer(({defaultFileList, setFormData, s
 	return (
 		<Upload.Dragger name='image' fileList={fileList} beforeUpload={beforeUpload} maxCount={1} listType='picture'
 			customRequest={customRequest} defaultFileList={defaultFileList} onRemove={onRemove}
-			accept='.png, .jpg, .jpeg, .gif, .svg'
 		>
 			<p className='ant-upload-drag-icon'>
 				<InboxOutlined/>

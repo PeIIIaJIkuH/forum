@@ -1,9 +1,9 @@
 import {FC} from 'react'
 import {ICategory} from '../../../types'
-import Tag from 'antd/lib/tag'
 import {categoriesQuery} from '../../../utils/helpers'
 import s from '../Posts.module.css'
 import {useHistory} from 'react-router-dom'
+import {Tag} from 'antd'
 
 type Props = {
 	categories: ICategory[]

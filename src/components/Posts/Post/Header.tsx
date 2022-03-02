@@ -9,17 +9,15 @@ import {EUserRole, IPost} from '../../../types'
 import {FC, useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 
-import Button from 'antd/lib/button'
-import Popover from 'antd/lib/popover'
 import {adminAPI} from '../../../api/admin'
 import appState from '../../../store/appState'
 import authState from '../../../store/authState'
-import message from 'antd/lib/message'
 import {moderatorAPI} from '../../../api/moderator'
 import moderatorState from '../../../store/moderatorState'
 import {observer} from 'mobx-react-lite'
 import postsState from '../../../store/postsState'
 import s from '../Posts.module.css'
+import {Button, message, Popover} from 'antd'
 
 type Props = {
 	post: IPost

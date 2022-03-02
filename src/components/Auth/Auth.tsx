@@ -1,16 +1,13 @@
 import {FC, useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-
 import {AuthForm} from './AuthForm'
-import Card from 'antd/lib/card'
 import {Error403} from '../common/errors/Error403'
 import {Helmet} from 'react-helmet'
 import appState from '../../store/appState'
 import authState from '../../store/authState'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './Auth.module.css'
-import {useForm} from 'antd/lib/form/Form'
+import {Card, Form, message} from 'antd'
 
 type Props = {
 	register?: boolean
@@ -18,7 +15,7 @@ type Props = {
 
 export const Auth: FC<Props> = observer(({register}) => {
 	const history = useHistory()
-	const [form] = useForm()
+	const [form] = Form.useForm()
 	const [isFetching, setIsFetching] = useState(false)
 	const [type, setType] = useState<'user' | 'moderator' | 'admin'>('user')
 

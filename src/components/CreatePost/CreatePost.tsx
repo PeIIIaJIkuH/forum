@@ -1,8 +1,5 @@
 import * as queryString from 'query-string'
-
 import {FC, useEffect, useState} from 'react'
-
-import Card from 'antd/lib/card'
 import {CreatePostForm} from './CreatePostForm'
 import {Error403} from '../common/errors/Error403'
 import {Error404} from '../common/errors/Error404'
@@ -12,6 +9,7 @@ import {observer} from 'mobx-react-lite'
 import postsState from '../../store/postsState'
 import s from './CreatePost.module.css'
 import {useLocation} from 'react-router-dom'
+import {Card} from 'antd'
 
 export const CreatePost: FC = observer(() => {
 	const location = useLocation()

@@ -1,21 +1,14 @@
 import {BellOutlined, DeleteOutlined} from '@ant-design/icons'
 import {FC, useState} from 'react'
-
-import Badge from 'antd/lib/badge'
-import Button from 'antd/lib/button'
 import {DefaultNotifications} from './DefaultNotifications'
-import Popover from 'antd/lib/popover'
 import {PostNotifications} from './PostNotifications'
 import {ReportNotifications} from './ReportNotifications'
 import {RoleNotifications} from './RoleNotifications'
-import Tabs from 'antd/lib/tabs'
 import appState from '../../store/appState'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import s from './Notifications.module.css'
 import userState from '../../store/userState'
-
-const {TabPane} = Tabs
+import {Badge, Button, message, Popover, Tabs} from 'antd'
 
 export const Notifications: FC = observer(() => {
 	const [visible, setVisible] = useState(false)
@@ -52,18 +45,18 @@ export const Notifications: FC = observer(() => {
 
 	const content = (
 		<Tabs centered className={s.tabs} tabBarExtraContent={userState.getNotificationsCount() && deleteButton}>
-			<TabPane tab={getTab('Default', userState.defaultNotifications.length)} key='default'>
+			<Tabs.TabPane tab={getTab('Default', userState.defaultNotifications.length)} key='default'>
 				<DefaultNotifications/>
-			</TabPane>
-			<TabPane tab={getTab('Requests', userState.roleNotifications.length)} key='requests'>
+			</Tabs.TabPane>
+			<Tabs.TabPane tab={getTab('Requests', userState.roleNotifications.length)} key='requests'>
 				<RoleNotifications/>
-			</TabPane>
-			<TabPane tab={getTab('Reports', userState.reportNotifications.length)} key='reports'>
+			</Tabs.TabPane>
+			<Tabs.TabPane tab={getTab('Reports', userState.reportNotifications.length)} key='reports'>
 				<ReportNotifications/>
-			</TabPane>
-			<TabPane tab={getTab('Posts', userState.postNotifications.length)} key='posts'>
+			</Tabs.TabPane>
+			<Tabs.TabPane tab={getTab('Posts', userState.postNotifications.length)} key='posts'>
 				<PostNotifications/>
-			</TabPane>
+			</Tabs.TabPane>
 		</Tabs>
 	)
 

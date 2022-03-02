@@ -1,10 +1,5 @@
 import {FC, useEffect} from 'react'
-
-import Button from 'antd/lib/button'
-import Card from 'antd/lib/card'
-import Descriptions from 'antd/lib/descriptions'
 import {EUserRole} from '../../types'
-import Typography from 'antd/lib/typography'
 import appState from '../../store/appState'
 import authState from '../../store/authState'
 import {formatDistanceToNow} from 'date-fns'
@@ -12,8 +7,7 @@ import {observer} from 'mobx-react-lite'
 import s from './User.module.css'
 import {userAPI} from '../../api/user'
 import userState from '../../store/userState'
-
-const {Title} = Typography
+import {Button, Card, Descriptions, Typography} from 'antd'
 
 export const UserInfo: FC = observer(() => {
 	const user = userState.user
@@ -64,7 +58,7 @@ export const UserInfo: FC = observer(() => {
 	return (
 		user && (
 			<section className={s.userInfo}>
-				<Card title={<Title level={2}>{user.username}</Title>}>
+				<Card title={<Typography.Title level={2}>{user.username}</Typography.Title>}>
 					<Descriptions title='User info' column={1}>
 						<Descriptions.Item label='E-mail'>{user.username}</Descriptions.Item>
 						<Descriptions.Item label='Created at'>{created}</Descriptions.Item>

@@ -1,6 +1,4 @@
 import {FC, useEffect, useState} from 'react'
-
-import Card from 'antd/lib/card'
 import {CommentForm} from './CommentForm'
 import {Comments} from './Comments'
 import {Error404} from '../common/errors/Error404'
@@ -8,11 +6,11 @@ import {Helmet} from 'react-helmet'
 import {Posts} from './Posts'
 import {commentsAPI} from '../../api/comments'
 import commentsState from '../../store/commentsState'
-import message from 'antd/lib/message'
 import {observer} from 'mobx-react-lite'
 import postsState from '../../store/postsState'
 import s from './Posts.module.css'
 import {useRouteMatch} from 'react-router-dom'
+import {Card, message} from 'antd'
 
 export const PostPage: FC = observer(() => {
 	const match = useRouteMatch<{ id: string }>()

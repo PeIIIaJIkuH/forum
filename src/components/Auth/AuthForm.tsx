@@ -1,13 +1,6 @@
-import Form, {FormInstance} from 'antd/lib/form'
 import {InfoCircleOutlined, LockOutlined, UserOutlined} from '@ant-design/icons'
-
-import Button from 'antd/lib/button'
 import {FC} from 'react'
-import Input from 'antd/lib/input'
-import Radio from 'antd/lib/radio/radio'
-import {RadioChangeEvent} from 'antd'
-import RadioGroup from 'antd/lib/radio/group'
-import Tooltip from 'antd/lib/tooltip'
+import {Button, Form, FormInstance, Input, Radio, RadioChangeEvent, Tooltip} from 'antd'
 import {defaultValidator} from '../../utils/helpers'
 import {observer} from 'mobx-react-lite'
 import s from './Auth.module.css'
@@ -27,15 +20,13 @@ type Props = {
 
 export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, isFetching, setType}) => {
 	const usernameInfo = (
-		<Tooltip
-			title={
-				<>
-					<div>4-20 characters long.</div>
-					<div>Allowed: a-z, A-Z, 0-9, _, .</div>
-					<div>No _, . at the beginning or end.</div>
-					<div>No __, _., ._, .. inside.</div>
-				</>
-			}
+		<Tooltip title={
+			<>
+				<div>4-20 characters long.</div>
+				<div>Allowed: a-z, A-Z, 0-9, _, .</div>
+				<div>No _, . at the beginning or end.</div>
+				<div>No __, _., ._, .. inside.</div>
+			</>}
 		>
 			<InfoCircleOutlined className='inputInfo'/>
 		</Tooltip>
@@ -46,16 +37,14 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 		</Tooltip>
 	)
 	const passwordInfo = (
-		<Tooltip
-			title={
-				<>
-					<div>6-20 characters long.</div>
-					<div>Allowed: a-z, A-Z, 0-9, _, .</div>
-					<div>At least one lowercase.</div>
-					<div>At least one uppercase.</div>
-					<div>At least one digit.</div>
-				</>
-			}
+		<Tooltip title={
+			<>
+				<div>6-20 characters long.</div>
+				<div>Allowed: a-z, A-Z, 0-9, _, .</div>
+				<div>At least one lowercase.</div>
+				<div>At least one uppercase.</div>
+				<div>At least one digit.</div>
+			</>}
 		>
 			<InfoCircleOutlined className='inputInfo'/>
 		</Tooltip>
@@ -95,7 +84,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 				<Input.Password prefix={<LockOutlined/>} placeholder='Password'/>
 			</Form.Item>
 			{register && (
-				<RadioGroup defaultValue='user' onChange={onChange} className={s.radioGroup}>
+				<Radio.Group defaultValue='user' onChange={onChange} className={s.radioGroup}>
 					<Radio value='user' className={s.radio}>
 						As user
 					</Radio>
@@ -105,7 +94,7 @@ export const AuthForm: FC<Props> = observer(({onsubmit, register, form, type, is
 					<Radio value='admin' className={s.radio}>
 						As admin
 					</Radio>
-				</RadioGroup>
+				</Radio.Group>
 			)}
 			{register && type === 'admin' && (
 				<Form.Item name='adminToken' colon={false} label={register && adminTokenInfo}

@@ -1,13 +1,12 @@
 import {EUserRole, IComment, IUser} from '../../types'
-
 import {Comment} from './Comment'
 import {FC} from 'react'
 import {Link} from 'react-router-dom'
-import List from 'antd/lib/list'
 import authState from '../../store/authState'
 import {formatDistanceToNow} from 'date-fns'
 import {observer} from 'mobx-react-lite'
 import s from './Posts.module.css'
+import {List} from 'antd'
 
 type Props = {
 	comments: IComment[] | null
