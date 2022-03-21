@@ -17,7 +17,7 @@ export const CategoriesSearch: FC<Props> = observer(({closeModal, mobile}) => {
 	const [isFetching, setIsFetching] = useState(false)
 	const [form] = Form.useForm()
 
-	type obj = { categories: string[] }
+	type obj = {categories: string[]}
 	const onSubmit = async ({categories}: obj) => {
 		if (mobile && closeModal) {
 			closeModal()

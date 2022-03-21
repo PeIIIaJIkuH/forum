@@ -13,7 +13,7 @@ const layout = {
 
 type Props = {
 	isFetching: boolean
-	onSubmit: (obj: { categories: string[] }) => Promise<void>
+	onSubmit: (obj: {categories: string[]}) => Promise<void>
 	form: FormInstance
 }
 

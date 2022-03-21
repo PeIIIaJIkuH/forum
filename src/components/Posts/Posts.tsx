@@ -17,14 +17,14 @@ import {LoadingOutlined} from '@ant-design/icons'
 type Props = & {
 	type?: 'my' | 'user' | 'up-voted' | 'down-voted' | 'post-page' | 'categories'
 	postPage?: boolean
-	userComments?: { [key: string]: IComment[] } | null
+	userComments?: {[key: string]: IComment[]} | null
 	postId?: number
 }
 
 export const Posts: FC<Props> = observer(({type, userComments, postId}) => {
 	const history = useHistory()
 	const location = useLocation()
-	const match = useRouteMatch<{ id: string }>()
+	const match = useRouteMatch<{id: string}>()
 	const urlId = match.params.id
 	const [title, setTitle] = useState('Home')
 

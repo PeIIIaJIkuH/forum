@@ -6,7 +6,7 @@ import s from './Posts.module.css'
 import {Button, Form, Input} from 'antd'
 
 type Props = {
-	onSubmit: (obj: { content: string }) => Promise<void>
+	onSubmit: (obj: {content: string}) => Promise<void>
 }
 
 export const CommentForm: FC<Props> = ({onSubmit}) => {

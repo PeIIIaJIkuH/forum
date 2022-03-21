@@ -10,7 +10,7 @@ const tailLayout = {
 }
 
 type Props = {
-	onsubmit: (obj: { username: string; email: string; password: string; adminToken: string }) => Promise<void>
+	onsubmit: (obj: {username: string; email: string; password: string; adminToken: string}) => Promise<void>
 	register?: boolean
 	form: FormInstance
 	isFetching: boolean

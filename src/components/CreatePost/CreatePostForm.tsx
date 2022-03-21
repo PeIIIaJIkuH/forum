@@ -36,7 +36,7 @@ export const CreatePostForm: FC<Props> = observer(({isFetching, setIsFetching}) 
 		}
 	}, [location.pathname])
 
-	type obj = { title: string; content: string; categories: string[] }
+	type obj = {title: string; content: string; categories: string[]}
 	const onSubmit = async ({title, content, categories}: obj) => {
 		let imagePath = postsState.editing?.imagePath
 		let isImage = postsState.editing?.isImage

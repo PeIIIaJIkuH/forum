@@ -13,7 +13,7 @@ import {useRouteMatch} from 'react-router-dom'
 import {Card, message} from 'antd'
 
 export const PostPage: FC = observer(() => {
-	const match = useRouteMatch<{ id: string }>()
+	const match = useRouteMatch<{id: string}>()
 	const urlId = match.params.id
 	const [check, setCheck] = useState(true)
 
@@ -32,7 +32,7 @@ export const PostPage: FC = observer(() => {
 		return <Error404/>
 	}
 
-	type obj = { content: string }
+	type obj = {content: string}
 	const onSubmit = async ({content}: obj) => {
 		const {status} = await commentsAPI.createComment(+urlId, content
 			.replace(/((\r\n)|\r|\n)+/gm, '\n').split('\n')

@@ -13,7 +13,7 @@ import {Posts} from '../Posts/Posts'
 import commentsState from '../../store/commentsState'
 
 export const User: FC = observer(() => {
-	const match = useRouteMatch<{ id: string }>()
+	const match = useRouteMatch<{id: string}>()
 	const urlId = match.params.id
 	const [check, setCheck] = useState(true)
 	const title = userState.user?.username || 'User Page'
