@@ -81,6 +81,22 @@ class AdminState {
 			this.setCategories(data)
 		}
 	}
+
+	deleteRequest(id: number) {
+		this.setRequests(this.requests.filter(request => request.id !== id))
+	}
+
+	deleteReport(id: number) {
+		this.setReports(this.reports.filter(report => report.id !== id))
+	}
+
+	deleteModerator(id: number) {
+		this.setModerators(this.moderators.filter(moderator => moderator.id !== id))
+	}
+
+	deleteCategory(id: number) {
+		this.setCategories(this.categories.filter(category => category.id !== id))
+	}
 }
 
 export default new AdminState()

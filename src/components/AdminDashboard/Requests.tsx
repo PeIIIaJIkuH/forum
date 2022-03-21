@@ -15,10 +15,7 @@ export const Requests: FC = observer(() => {
 		appState.setIsLoading(false)
 		if (status) {
 			message.success('request was accepted successfully')
-			adminState.setRequests([])
-			adminState.setModerators([])
-			await adminState.fetchRequests()
-			await adminState.fetchModerators()
+			adminState.deleteRequest(id)
 		} else {
 			message.error('can not accept request')
 		}
@@ -30,8 +27,7 @@ export const Requests: FC = observer(() => {
 		appState.setIsLoading(false)
 		if (status) {
 			message.success('request was dismissed successfully')
-			adminState.setRequests([])
-			await adminState.fetchRequests()
+			adminState.deleteRequest(id)
 		} else {
 			message.error('can not dismiss request')
 		}

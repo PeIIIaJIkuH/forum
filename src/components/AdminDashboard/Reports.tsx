@@ -15,8 +15,7 @@ export const Reports: FC = observer(() => {
 		appState.setIsLoading(false)
 		if (status) {
 			message.success('report was accepted successfully')
-			adminState.setReports([])
-			await adminState.fetchReports()
+			adminState.deleteReport(id)
 		} else {
 			message.error('can not accept report')
 		}
@@ -28,8 +27,7 @@ export const Reports: FC = observer(() => {
 		appState.setIsLoading(false)
 		if (status) {
 			message.success('report was dismissed successfully')
-			adminState.setReports([])
-			await adminState.fetchReports()
+			adminState.deleteReport(id)
 		} else {
 			message.error('can not dismiss report')
 		}

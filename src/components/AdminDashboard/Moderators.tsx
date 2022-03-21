@@ -15,8 +15,7 @@ export const Moderators: FC = observer(() => {
 		appState.setIsLoading(false)
 		if (status) {
 			message.success('moderator was demoted successfully')
-			adminState.setModerators([])
-			await adminState.fetchRequests()
+			adminState.deleteModerator(id)
 		} else {
 			message.error('can not demote moderator')
 		}

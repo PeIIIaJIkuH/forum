@@ -16,8 +16,7 @@ export const Categories: FC = observer(() => {
 		appState.setIsLoading(false)
 		if (status) {
 			message.success('category was deleted successfully')
-			adminState.setCategories([])
-			await adminState.fetchCategories()
+			adminState.deleteCategory(id)
 		} else {
 			message.error('can not delete category')
 		}
