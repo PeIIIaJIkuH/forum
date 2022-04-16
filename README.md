@@ -26,16 +26,16 @@ npm run dev
 ## Screenshots
 
 -   App preloader
-    ![App preloader](src/assets/img/screenshots/app-preloader.jpg)
+-   ![App preloader](src/assets/img/screenshots/app-preloader.jpg)
 -   Main page, user is not logged in
-    ![Main page, user is not logged in](src/assets/img/screenshots/main-page-no-auth.jpg)
+-   ![Main page, user is not logged in](src/assets/img/screenshots/main-page-no-auth.jpg)
 -   Main page, user is logged in
-    ![Main page, user is logged in](src/assets/img/screenshots/main-page-auth.jpg)
+-   ![Main page, user is logged in](src/assets/img/screenshots/main-page-auth.jpg)
 -   Create post form
-    ![Create post form](src/assets/img/screenshots/create-post.jpg)
+-   ![Create post form](src/assets/img/screenshots/create-post.jpg)
 -   User page and notifications
-    ![User page and notifications](src/assets/img/screenshots/user-page-and-notifications.jpg)
+-   ![User page and notifications](src/assets/img/screenshots/user-page-and-notifications.jpg)
 -   Moderator dashboard
-    ![Moderator dashboard](src/assets/img/screenshots/moderator-dashboard.jpg)
+-   ![Moderator dashboard](src/assets/img/screenshots/moderator-dashboard.jpg)
 -   Admin dashboard
-    ![Admin dashboard](src/assets/img/screenshots/admin-dashboard.jpg)
+-   ![Admin dashboard](src/assets/img/screenshots/admin-dashboard.jpg)
